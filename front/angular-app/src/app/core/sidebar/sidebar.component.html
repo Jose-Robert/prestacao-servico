@@ -1,0 +1,10 @@
+<aside id="app-sidebar" [class.active]="active">
+  <section *ngIf="usuario" class="header-profile">
+    <ul>
+      <li><b>Usuário:</b> {{ usuario.nome }}</li>
+      <li><b>Tempo de sessão:</b> {{ today | timeDifference:loggedSince:'HH:mm:ss' }}</li>
+    </ul>
+  </section>
+
+  <p-panelMenu [model]="menuItems" [multiple]="false"></p-panelMenu>
+</aside>

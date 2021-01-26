@@ -1,0 +1,53 @@
+#app-main {
+  min-height: calc(100vh - 60px);
+  padding-bottom: 125px;
+  position: relative;
+
+  .page-header {
+    background-color: #fff;
+    border-color: #e7eaec;
+    border-image: none;
+    border-style: solid solid none;
+    border-width: 1px 0;
+    padding: 20px;
+
+    h1 {
+      font-size: 24px;
+      margin-top: 5px;
+    }
+  }
+
+  .page-content {
+    padding: 20px;
+
+    .accessibility-bar {
+      margin-bottom: 1em;
+    }
+  }
+
+  .page-footer {
+    background-color: #fff;
+    bottom: 0;
+    padding: 20px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+
+    .logo { height: 2.5em }
+
+    .block-1 { margin-bottom: 10px }
+
+    @media screen and (min-width: 561px) {
+      .block-1 {
+        float: left;
+        margin-bottom: 0;
+        text-align: left;
+      }
+
+      .block-2 {
+        float: right;
+        text-align: right;
+      }
+    }
+  }
+}

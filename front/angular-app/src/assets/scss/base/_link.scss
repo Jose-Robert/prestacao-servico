@@ -1,0 +1,17 @@
+body a {
+  color: $linkColor;
+  outline: 0;
+
+  &:hover {
+    color: $linkColorHover;
+    text-decoration: none;
+  }
+
+  &.ui-button:hover { color: #fff }
+
+  &.disabled {
+    cursor: default;
+    opacity: $opacityDisabled;
+    pointer-events: none;
+  }
+}

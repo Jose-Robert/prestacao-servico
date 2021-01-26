@@ -1,0 +1,103 @@
+<app-page-header [title]="title"></app-page-header>
+
+<div class="page-content">
+  <p-panel [showHeader]="false">
+    <app-panel-loader [visible]="loading"></app-panel-loader>
+
+    <div class="ui-g">
+      <form class="form form-informacoes-pessoais ui-sm-12 ui-md-6" [formGroup]="formInformacoesPessoais"
+        [class.submitted]="formInformacoesPessoaisSubmitted" (ngSubmit)="saveInformacoesPessoais()">
+        <p-fieldset legend="Informações Pessoais" styleClass="fieldset-informacoes-pessoais">
+          <div class="ui-g form-group-nome">
+            <label for="nome" class="ui-g-12 control-label required">Nome</label>
+            <div class="ui-g-12">
+              <input pInputText type="text" id="nome" class="form-control" formControlName="nome" appAutoFocus>
+              <app-validation [control]="formInformacoesPessoais.get('nome')" [submitted]="formInformacoesPessoaisSubmitted"></app-validation>
+            </div>
+          </div> <!--/.form-group-nome-->
+
+          <div class="ui-g form-group-email">
+            <label for="email" class="ui-g-12 control-label required">E-mail</label>
+            <div class="ui-g-12">
+              <input pInputText type="email" id="email" class="form-control" formControlName="email">
+              <app-validation [control]="formInformacoesPessoais.get('email')" [submitted]="formInformacoesPessoaisSubmitted"></app-validation>
+            </div>
+          </div> <!--/.form-group-email-->
+
+          <div class="ui-g form-group-confirmacao-email">
+            <label for="confirmacao-email" class="ui-g-12 control-label required">Confirmação de e-mail</label>
+            <div class="ui-g-12">
+              <input pInputText type="email" id="confirmacao-email" class="form-control" formControlName="confirmacaoEmail" autocomplete="off">
+              <app-validation [control]="formInformacoesPessoais.get('confirmacaoEmail')" [submitted]="formInformacoesPessoaisSubmitted"></app-validation>
+            </div>
+          </div> <!--/.form-group-confirmacao-email-->
+
+          <div class="ui-g form-group-login">
+            <label for="login" class="ui-g-12 control-label required">Login</label>
+            <div class="ui-g-12">
+              <input pInputText type="text" id="login" class="form-control" formControlName="login">
+              <app-validation [control]="formInformacoesPessoais.get('login')" [submitted]="formInformacoesPessoaisSubmitted"></app-validation>
+            </div>
+          </div> <!--/.form-group-login-->
+
+          <div class="ui-g form-group-validacoes">
+            <div class="ui-g-12">
+              <app-validation [control]="formInformacoesPessoais" [submitted]="formInformacoesPessoaisSubmitted" mode="submitted"
+                [messages]="[{ type: 'emailConfirmado', message: 'E-mail confirmado incorretamente' }]"></app-validation>
+            </div>
+          </div>
+
+          <div class="ui-g form-group-botoes">
+            <div class="ui-g-12">
+              <button pButton type="submit" class="ui-button-success" icon="fa fa-save" label="Salvar"></button>
+            </div>
+          </div> <!--.form-group-botoes-->
+        </p-fieldset>
+      </form>
+
+      <form class="form form-senha ui-sm-12 ui-md-6" [formGroup]="formSenha"
+        [class.submitted]="formSenhaSubmitted" (ngSubmit)="saveSenha()">
+        <p-fieldset legend="Senha" styleClass="fieldset-senha">
+          <div class="ui-g form-group-senha-atual">
+            <label for="senha-atual" class="ui-g-12 control-label required">Senha atual</label>
+            <div class="ui-g-12">
+              <input pInputText type="password" id="senha-atual" class="form-control" formControlName="senhaAtual">
+              <app-validation [control]="formSenha.get('senhaAtual')" [submitted]="formSenhaSubmitted"></app-validation>
+            </div>
+          </div> <!--/.form-group-senha-->
+
+          <div class="ui-g form-group-senha">
+            <label for="senha" class="ui-g-12 control-label required">Nova senha</label>
+            <div class="ui-g-12">
+              <input pPassword type="password" id="senha" class="form-control" formControlName="senha"
+                promptLabel="Sua senha deve ter letras e números com no mínimo 6 e no máximo 20 caracteres"
+                weakLabel="Senha fraca" mediumLabel="Senha média" strongLabel="Senha forte">
+              <app-validation [control]="formSenha.get('senha')" [submitted]="formSenhaSubmitted"></app-validation>
+            </div>
+          </div> <!--/.form-group-senha-->
+
+          <div class="ui-g form-group-confirmacao-senha">
+            <label for="confirmacao-senha" class="ui-g-12 control-label required">Confirmação de Senha</label>
+            <div class="ui-g-12">
+              <input pInputText type="password" id="confirmacao-senha" class="form-control" formControlName="confirmacaoSenha">
+              <app-validation [control]="formSenha.get('confirmacaoSenha')" [submitted]="formSenhaSubmitted"></app-validation>
+            </div>
+          </div> <!--/.form-group-confirmacao-senha-->
+
+          <div class="ui-g">
+            <div class="ui-g-12 form-group-validacoes">
+              <app-validation [control]="formSenha" [submitted]="formSenhaSubmitted" mode="submitted"
+                [messages]="[{ type: 'senhaConfirmada', message: 'Senha confirmada incorretamente' }]"></app-validation>
+            </div>
+          </div>
+
+          <div class="ui-g form-group-botoes">
+            <div class="ui-g-12">
+              <button pButton type="submit" class="ui-button-success" icon="fa fa-save" label="Salvar"></button>
+            </div>
+          </div> <!--.form-group-botoes-->
+        </p-fieldset>
+      </form>
+    </div>
+  </p-panel>
+</div> <!--/.page-content-->

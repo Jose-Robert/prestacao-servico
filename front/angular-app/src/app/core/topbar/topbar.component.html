@@ -1,0 +1,21 @@
+<header id="app-topbar">
+  <button class="menu-button" (click)="onToggleMenu()">
+    <i class="fa fa-bars"></i>
+  </button>
+
+  <a routerLink="/" class="logo" [title]="applicationName" (click)="scrollToTop()">{{ applicationName }}</a>
+
+  <ul class="topbar-menu">
+    <ng-container *ngTemplateOutlet="popupMenu; context: { menu: menuUsuario, icon: 'fa fa-ellipsis-v' }"></ng-container>
+  </ul>
+
+  <p-menu #menuUsuario popup="popup" [model]="menuItemsUsuario"></p-menu>
+</header>
+
+<ng-template #popupMenu let-menu="menu" let-icon="icon">
+  <li>
+    <a href="javascript:" class="popup-menu" (click)="menu.toggle($event)">
+      <i class="fa {{icon}}"></i>
+    </a>
+  </li>
+</ng-template>

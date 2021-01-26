@@ -1,0 +1,37 @@
+body {
+  .wrapper.login {
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+
+    .login-form {
+      background-color: #fff;
+      margin: 0 10px;
+      padding: 20px;
+      position: relative;
+      width: calc(100% - 20px);
+
+      @media screen and (min-width: 300px) {
+        max-width: 350px;
+      }
+
+      .image {
+        text-align: center;
+
+        .logo {
+          margin-bottom: 1em;
+          height: 100px;
+        }
+      }
+
+      h1 {
+        font-size: 1.6em;
+        margin-bottom: 0;
+      }
+    }
+  }
+}

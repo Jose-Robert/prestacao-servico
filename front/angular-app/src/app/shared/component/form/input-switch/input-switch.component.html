@@ -1,0 +1,25 @@
+<div *ngIf="orientation === 'vertical'; else tplHorizontal" class="ui-g">
+  <div class="ui-sm-12 ui-md-4 ui-lg-3">
+    <div class="ui-g form-group-{{inputId}}">
+      <label [for]="inputId" [ngClass]="{ 'ui-g-12 control-label': true, 'required': required }">{{label}}</label>
+      <div class="ui-g-12">
+        <ng-container *ngTemplateOutlet="tplInput"></ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #tplHorizontal>
+  <div class="ui-g form-group-{{inputId}}">
+    <label [for]="inputId" [ngClass]="{ 'ui-sm-12 ui-md-2 control-label': true, 'required': required }">{{label}}</label>
+    <div class="ui-sm-12 ui-md-4">
+      <ng-container *ngTemplateOutlet="tplInput"></ng-container>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #tplInput>
+  <p-inputSwitch [inputId]="inputId" [name]="name || inputId" [formControl]="control" (onChange)="changed.emit($event)"></p-inputSwitch>
+  <span class="ui-inputswitch-label">{{ control.value ? on : off }}</span>
+  <app-validation *ngIf="validation" [control]="control" [submitted]="submitted"></app-validation>
+</ng-template>

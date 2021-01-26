@@ -1,0 +1,49 @@
+$color: #2d353c;
+$fontSize: 14px;
+
+// Button
+$buttonPrimaryBackgroundColor: #1a7bb9;
+$buttonPrimaryBackgroundColorHover: #096aa8;
+$buttonSecondaryBackgroundColor: #e6e6e6;
+$buttonSecondaryBackgroundColorHover: #d5d5d5;
+$buttonSecondaryBorderColor: #ccc;
+$buttonSuccessBackgroundColor: #18a689;
+$buttonSuccessBackgroundColorHover: #079578;
+$buttonInfoBackgroundColor: #21b9bb;
+$buttonInfoBackgroundColorHover: #10a8aa;
+$buttonWarningBackgroundColor: #f7a54a;
+$buttonWarningBackgroundColorHover: #e69439;
+$buttonDangerBackgroundColor: #ec4758;
+$buttonDangerBackgroundColorHover: #db3647;
+
+// Link
+$linkColor: #007bff;
+$linkColorHover: #0056b3;
+
+// Disabled
+$opacityDisabled: .35;
+
+// Sidebar
+$sidebarBackgroundColor: #2f4050;
+$sidebarBackgroundColorActive: #293846;
+$sidebarColorLink: #a7b1c2;
+$sidebarColorLinkActive: #fff;
+$sidebarBreakpoint: 768px;
+$sidebarTransition: all 0.5s ease;
+
+// Topbar
+$topbarColor: #2f4050;
+$topbarColorLink: #a7b1c2;
+$topbarColorLinkActive: #fff;
+
+// Table
+$tableBorder: 1px solid #dee2e6;
+
+// Status
+$statusSuccess: #18a689;
+$statusWarning: #f7a54a;
+$statusError: #ec4758;
+$statusRunning: #21b9bb;
+
+// Validation
+$validationColorError: #ab1a0f;

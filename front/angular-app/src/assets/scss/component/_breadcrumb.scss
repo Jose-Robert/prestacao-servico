@@ -1,0 +1,22 @@
+#app-breadcrumb {
+  .ui-breadcrumb {
+    border: none;
+    padding: 0;
+  }
+
+  .ui-breadcrumb-chevron {
+    margin: 0 .1em;
+
+    &::before {
+      font-size: 1em;
+      font-weight: normal;
+    }
+  }
+
+  .ui-menuitem-link {
+    background-color: transparent;
+    color: #333;
+
+    &.ui-state-active { font-weight: 600 }
+  }
+}

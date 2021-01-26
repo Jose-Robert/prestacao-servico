@@ -1,0 +1,81 @@
+body .ui-button,
+body .ui-button.ui-state-default {
+  background-color: $buttonPrimaryBackgroundColor;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  font-weight: 600;
+  margin-right: .5em;
+  padding: .3em;
+
+  &:last-of-type { margin-right: 0 }
+
+  &:enabled:hover,
+  &:focus { background-color: $buttonPrimaryBackgroundColorHover }
+
+  &.ui-button-secondary {
+    background-color: $buttonSecondaryBackgroundColor;
+    border-color: $buttonSecondaryBorderColor;
+    color: #555;
+
+    &:enabled:hover,
+    &:focus { background-color: $buttonSecondaryBackgroundColorHover }
+  }
+
+  &.ui-button-success {
+    background-color: $buttonSuccessBackgroundColor;
+    border-color: transparent;
+
+    &:enabled:hover,
+    &:focus { background-color: $buttonSuccessBackgroundColorHover }
+  }
+
+  &.ui-button-info {
+    background-color: $buttonInfoBackgroundColor;
+    border-color: transparent;
+
+    &:enabled:hover,
+    &:focus { background-color: $buttonInfoBackgroundColorHover }
+  }
+
+  &.ui-button-warning {
+    background-color: $buttonWarningBackgroundColor;
+    border-color: transparent;
+
+    &:enabled:hover,
+    &:focus { background-color: $buttonWarningBackgroundColorHover }
+  }
+
+  &.ui-button-danger {
+    background-color: $buttonDangerBackgroundColor;
+    border-color: transparent;
+
+    &:enabled:hover,
+    &:focus { background-color: $buttonDangerBackgroundColorHover }
+  }
+
+  &.ui-button-link {
+    background-color: transparent;
+    border-color: transparent;
+    color: $linkColor;
+
+    &:enabled:hover,
+    &:focus {
+      background-color: transparent;
+      color: $linkColorHover;
+    }
+  }
+
+  // Icon-only
+  &.ui-button-icon-only {
+    .ui-button-text { padding: 0 }
+  }
+
+  /* Size */
+
+  &.ui-button-sm {
+    font-size: .8em;
+    padding: .2em;
+  }
+
+  &.ui-button-lg { font-size: 1.1em }
+}

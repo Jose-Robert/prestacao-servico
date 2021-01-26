@@ -1,0 +1,24 @@
+<app-page-header [title]="title"></app-page-header>
+
+<div class="page-content">
+  <p-panel [showHeader]="false">
+    <app-panel-loader [visible]="loading"></app-panel-loader>
+
+    <form [formGroup]="form" (ngSubmit)="save()" [ngClass]="{ 'form form-horizontal form-cadastro': true, 'submitted': formSubmitted }">
+      <app-input-text label="Nome" [control]="form.get('nome')" inputId="nome" orientation="horizontal" [autoFocus]="true"
+        [required]="true" [submitted]="formSubmitted"></app-input-text>
+
+      <app-multi-select label="Permissões" [control]="form.get('permissoes')" inputId="permissoes" orientation="horizontal"
+        [options]="permissaoOptions"></app-multi-select>
+
+      <app-input-switch label="Status" [control]="form.get('ativo')" inputId="ativo" orientation="horizontal"
+        on="Ativo" off="Inativo"></app-input-switch>
+
+      <div class="ui-g form-group-botoes">
+        <div class="ui-sm-12 ui-md-10 ui-md-offset-2">
+          <button pButton type="submit" class="ui-button-success" icon="fa fa-save" label="Salvar"></button>
+        </div>
+      </div> <!--.form-group-botoes-->
+    </form>
+  </p-panel>
+</div> <!--/.page-content-->

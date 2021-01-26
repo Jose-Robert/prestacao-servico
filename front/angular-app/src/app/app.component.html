@@ -1,0 +1,38 @@
+<div id="app-authenticated">
+  <div class="wrapper">
+    <app-topbar (toggleMenu)="toggleMenu()"></app-topbar>
+
+    <div id="app-wrapper" [class.toggled]="toggled">
+      <app-sidebar [active]="toggled" (itemClick)="hideMenu()"></app-sidebar>
+
+      <main id="app-main">
+        <router-outlet></router-outlet>
+
+        <app-page-footer></app-page-footer>
+      </main>
+
+      <div id="app-mask" [style.display]="displayMask ? 'block' : 'none'" (click)="hideMenu()"></div>
+    </div>
+  </div>
+</div>
+
+<ng-template #notAuthenticated>
+  <div class="wrapper login">
+    <router-outlet></router-outlet>
+  </div>
+</ng-template>
+
+<p-toast life="5000"></p-toast>
+
+<p-confirmDialog header="Confirmação" icon="fa fa-question-circle" #confirmDialog>
+  <p-footer>
+    <button pButton class="ui-button-danger btn-nao" icon="fa fa-times" label="Não"
+      (click)="confirmDialog.reject()"></button>
+    <button pButton class="ui-button-success btn-sim" icon="fa fa-check" label="Sim"
+      (click)="confirmDialog.accept()"></button>
+  </p-footer>
+</p-confirmDialog>
+
+<div id="btn-scroll-top" [hidden]="!showButtonScrollTop">
+  <i class="fa fa-arrow-circle-up" (click)="scrollToTop()"></i>
+</div>

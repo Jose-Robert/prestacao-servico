@@ -1,0 +1,46 @@
+body {
+  background-color: #f3f3f4;
+  color: #555;
+
+  #app-authenticated { padding-top: 60px }
+
+  #app-wrapper {
+    padding-left: 0;
+    position: relative;
+    transition: $sidebarTransition;
+
+    &.toggled {
+      @media screen and (min-width: $sidebarBreakpoint) { padding-left: 250px }
+    }
+  }
+
+  #app-mask {
+    background-color: rgba(0, 0, 0, .7);
+    display: none;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 998;
+
+    #app-wrapper.toggled & {
+      @media screen and (max-width: $sidebarBreakpoint - 1) { display: block }
+    }
+  }
+
+  #btn-scroll-top {
+    bottom: 20px;
+    position: fixed;
+    right: 10px;
+
+    i {
+      cursor: pointer;
+      font-size: 3em;
+      opacity: .5;
+      transition-duration: .5s;
+
+      &:hover { opacity: 1 }
+    }
+  }
+}
