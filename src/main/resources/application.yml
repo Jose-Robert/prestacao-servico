@@ -1,0 +1,45 @@
+server:
+    tomcat:
+       connection-timeout: ${SERVER_TIMEOUT:60000}
+    servlet:
+       context-path: ${SERVER_SERVLET_CONTEXT_PATH:}
+       
+spring:
+    datasource:
+        hikari:
+          connectionTimeout: ${HIKARI_CONNECTION_TIMEOUT:30000}
+          maxLifetime: ${HIKARI_MAX_LIFETIME:1800000}
+          maximumPoolSize: ${HIKARI_MAXIMUM_POOLSIZE:10}
+        dbcp2:
+            initial-size: 1
+            max-idle: 4
+            max-total: 20
+            min-idle: 0
+            remove-abandoned-timeout: 360
+            test-on-borrow: true
+            time-between-eviction-runs-millis: 60000
+        driver-class-name: org.h2.Driver
+        password: ${DB_PASSWORD:}
+        url: ${DB_URL:jdbc:h2:mem:db}
+        username: ${DB_USER:sa}
+        
+    jackson:
+        date-format: yyyy-MM-dd
+        joda-date-time-format: yyyy-MM-dd HH:mm:ss
+        time-zone: GMT-03:00
+        serialization:
+            WRITE_DATES_AS_TIMESTAMPS: false
+    jpa:
+      database-platform: org.hibernate.dialect.H2Dialect
+      show-sql: ${SHOW_SQL:false}
+      properties:
+        hibernate:
+          temp:
+            use_jdbc_metadata_defaults: false
+    h2: 
+      console:
+         enable: true
+         path: /h2-console
+prestacao-servico:
+  cors:
+    allowed-origin: ${CORS_ALLOWED_ORIGIN:*}
