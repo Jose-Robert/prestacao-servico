@@ -22,7 +22,7 @@ import io.github.prestacao.servico.presentation.dto.cliente.ClienteRequestTO;
 import io.github.prestacao.servico.presentation.dto.cliente.ClienteResponseTO;
 
 @RestController
-@RequestMapping("/api/clientes")
+@RequestMapping("/clientes")
 public class ClienteController {
 
 	@Autowired
