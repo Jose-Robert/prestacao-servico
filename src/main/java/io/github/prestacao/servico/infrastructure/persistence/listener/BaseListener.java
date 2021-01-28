@@ -12,7 +12,6 @@ public class BaseListener {
     @PrePersist
     public void onPrePersist(BaseEntity genericEntity) {
         genericEntity.setDataCriacao(LocalDateTime.now());
-        genericEntity.setAtivo(true);
     }
 
     @PreUpdate
