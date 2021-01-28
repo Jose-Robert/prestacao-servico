@@ -57,6 +57,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
       .addMenu(this.menu('Home', 'fa fa-home', 'menu-dashboard', ['/home']))
       // Administrativo
       .addMenu(this.expandedMenu('Administrativo', 'menu-administrativo', this.isExpandedMenu(`/${Route.ADMINISTRATIVO}`)))
+        .addMenu(this.expandedMenu('Cliente', 'submenu-cliente', this.isExpandedMenu(`/${Route.ADMINISTRATIVO_CLIENTES}`)), 1)
+          .addMenu(this.listingMenu([`/${Route.ADMINISTRATIVO_CLIENTES}`]), 2)
+          .addMenu(this.registrationMenu([`/${Route.ADMINISTRATIVO_CLIENTES}/${Route.GENERICO_CADASTRAR}`]), 2)
         .addMenu(this.expandedMenu('Grupo', 'submenu-grupo', this.isExpandedMenu(`/${Route.ADMINISTRATIVO_GRUPOS}`)), 1)
           .addMenu(this.listingMenu([`/${Route.ADMINISTRATIVO_GRUPOS}`]), 2)
           .addMenu(this.registrationMenu([`/${Route.ADMINISTRATIVO_GRUPOS}/${Route.GENERICO_CADASTRAR}`]), 2)

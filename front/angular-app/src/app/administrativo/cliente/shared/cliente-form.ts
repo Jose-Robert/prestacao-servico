@@ -10,8 +10,9 @@ export class ClienteForm extends FormGroup {
       ]),
       cpf: new FormControl(null, [
         Validators.required,
-        Validators.maxLength(11)
+        Validators.maxLength(14)
       ]),
+      ativo: new FormControl(true, Validators.required)
     })
   }
 }

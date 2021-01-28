@@ -9,9 +9,11 @@ export enum Route {
   GENERICO_EDITAR = ':id/editar',
 
   ADMINISTRATIVO = 'administrativo',
+  CLIENTES = 'clientes',
   GRUPOS = 'grupos',
   USUARIOS = 'usuarios',
   PERFIL = 'perfil',
+  ADMINISTRATIVO_CLIENTES = 'administrativo/clientes',
   ADMINISTRATIVO_GRUPOS = 'administrativo/grupos',
   ADMINISTRATIVO_USUARIOS = 'administrativo/usuarios',
   ADMINISTRATIVO_USUARIOS_PERFIL = 'administrativo/usuarios/perfil',

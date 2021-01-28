@@ -10,6 +10,10 @@ const routes: Routes = [
     component: AdministrativoComponent,
     children: [
       {
+        path: Route.CLIENTES,
+        loadChildren: () => import('./cliente/cliente.module').then(m => m.ClienteModule),
+      },
+      {
         path: Route.GRUPOS,
         loadChildren: () => import('./grupo/grupo.module').then(m => m.GrupoModule),
       },

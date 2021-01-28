@@ -13,6 +13,10 @@ const routes: Routes = [
         path: Route.GENERICO_CADASTRAR,
         component: ClienteRegistrationComponent,
       },
+      {
+        path: Route.GENERICO_EDITAR,
+        component: ClienteRegistrationComponent,
+      }
     ]
   },
 ];

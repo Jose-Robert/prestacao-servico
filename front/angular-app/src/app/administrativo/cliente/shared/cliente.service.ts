@@ -10,6 +10,6 @@ import { ClienteSerializer } from './cliente-serializer';
 export class ClienteService extends CrudService<ClienteRequest, ClienteResponse, any> {
 
   constructor(protected httpClient: HttpClient) {
-    super(httpClient, environment.apiAuthUrl, 'clientes', new ClienteSerializer());
+    super(httpClient, environment.apiAuthUrl, '/clientes', new ClienteSerializer());
    }
 }

@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.stereotype.Component;
@@ -28,18 +27,17 @@ public class ConverterService {
 	@Autowired
 	private RepositoryFactory repositoryFactory;
 	
-	@Bean
-	public ModelMapper modelMapper() {
-		return new ModelMapper();
-	}
+	@Autowired
+	public ModelMapper modelMapper;
+	
 	public <T> T convert(Object data, Class<T> destinationType) {
-		T target = modelMapper().map(data, destinationType);
+		T target = modelMapper.map(data, destinationType);
 
 		return refreshReferences(data, target);
 	}
 
 	public <T> T convert(Enum<?> data, Class<T> destinationType) {
-		T target = modelMapper().map(data, destinationType);
+		T target = modelMapper.map(data, destinationType);
 		try {
 			Field fieldTarget = target.getClass().getDeclaredField("name");
 			fieldTarget.setAccessible(true);

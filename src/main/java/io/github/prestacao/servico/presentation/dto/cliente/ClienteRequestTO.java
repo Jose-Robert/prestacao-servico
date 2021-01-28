@@ -12,5 +12,7 @@ public class ClienteRequestTO implements Serializable {
 	private String nome;
 
 	private String cpf;
+	
+	private boolean ativo;
 
 }
