@@ -1,23 +1,3 @@
-# AngularApp
-
-Projeto Angular que serve como base para desenvolvimento de outros projetos.
-
-## Módulos/Funcionalidades
-
-* Login
-  * Recuperação de Senha
-* Home
-* Administrativo
-  * Grupo
-    * Listagem
-    * Cadastro, Edição e Alteração de Status
-  * Usuário
-    * Listagem
-    * Cadastro, Edição e Alteração de Status
-* Perfil
-  * Edição de Informações Pessoais
-  * Edição de Senha
-
 ## Desenvolvimento
 
 ### Servidor de Desenvolvimento
