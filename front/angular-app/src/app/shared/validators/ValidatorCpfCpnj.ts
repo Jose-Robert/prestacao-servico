@@ -6,29 +6,29 @@ export class ValidatorCpfCpnj {
 
     static ValidaCpfCnpj(controle: AbstractControl) {
 
-        const erroCpfCnpj = { cpfCnpj: "" };
+        const erroCpfCnpj = { cpfCnpj: '' };
         let validou: boolean;
-        let valorAValidar: string = StringUtils.somenteNumeros(controle.value);
+        const valorAValidar: string = StringUtils.somenteNumeros(controle.value);
 
-        if (ValidacoesUtil.isCpf(valorAValidar, controle.value)) {            
+        if (ValidacoesUtil.isCpf(valorAValidar, controle.value)) {
             validou = ValidacoesUtil.validarCPF(valorAValidar);
-        } else {            
+        } else {
             validou = ValidacoesUtil.validarCNPJ(valorAValidar);
         }
 
         if (validou) {
             return null;
-        } 
-        
+        }
+
         return erroCpfCnpj;
-        
+
     }
 
     static ValidaCpf(controle: AbstractControl) {
 
-        const erroCpf = { cpf: "" };
-        let validou: boolean = false;
-        let valorAValidar: string = StringUtils.somenteNumeros(controle.value);
+        const erroCpf = { cpf: '' };
+        let validou = false;
+        const valorAValidar: string = StringUtils.somenteNumeros(controle.value);
 
         if (ValidacoesUtil.isCpf(valorAValidar, controle.value)) {
             validou = ValidacoesUtil.validarCPF(valorAValidar);
@@ -36,10 +36,10 @@ export class ValidatorCpfCpnj {
 
         if (validou) {
             return null;
-        } 
-        
+        }
+
         return erroCpf;
-        
+
     }
 }
 

@@ -4,8 +4,8 @@ export class ValidacoesUtil {
 
     static validarCNPJ(cnpj): boolean {
 
-        if (!cnpj || cnpj.trim() === '' || cnpj.length != 14) {
-            return false
+        if (!cnpj || cnpj.trim() === '' || cnpj.length !== 14) {
+            return false;
         }
 
         if (cnpj === '00000000000000' ||
@@ -21,9 +21,9 @@ export class ValidacoesUtil {
             return false;
         }
 
-        let tamanho = cnpj.length - 2
+        let tamanho = cnpj.length - 2;
         let numeros = cnpj.substring(0, tamanho);
-        let digitos = cnpj.substring(tamanho);
+        const digitos = cnpj.substring(tamanho);
         let soma = 0;
         let pos = tamanho - 7;
         for (let i = tamanho; i >= 1; i--) {
@@ -33,7 +33,7 @@ export class ValidacoesUtil {
             }
         }
         let resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
-        if (resultado != digitos.charAt(0)) {
+        if (resultado !== digitos.charAt(0)) {
             return false;
         }
 
@@ -48,7 +48,7 @@ export class ValidacoesUtil {
             }
         }
         resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
-        if (resultado != digitos.charAt(1)) {
+        if (resultado !== digitos.charAt(1)) {
             return false;
         }
 
@@ -57,8 +57,8 @@ export class ValidacoesUtil {
 
     static validarCPF(cpf): boolean {
 
-        if (!cpf || cpf.trim() === '' || cpf.length != 11) {
-            return false
+        if (!cpf || cpf.trim() === '' || cpf.length !== 11) {
+            return false;
         }
 
         if (cpf.length !== 11 ||
@@ -81,11 +81,11 @@ export class ValidacoesUtil {
         }
 
         let rev = 11 - (add % 11);
-        if (rev == 10 || rev == 11) {
+        if (rev === 10 || rev === 11) {
             rev = 0;
         }
 
-        if (rev != parseInt(cpf.charAt(9))) {
+        if (rev !== parseInt(cpf.charAt(9))) {
             return false;
         }
 
@@ -97,11 +97,11 @@ export class ValidacoesUtil {
 
         rev = 11 - (add % 11);
 
-        if (rev == 10 || rev == 11) {
+        if (rev === 10 || rev === 11) {
             rev = 0;
         }
 
-        if (rev != parseInt(cpf.charAt(10))) {
+        if (rev !== parseInt(cpf.charAt(10))) {
             return false;
         }
 
@@ -110,14 +110,14 @@ export class ValidacoesUtil {
 
     static isCpf(valorSoNumero: string, valorFormatado: string): boolean {
         if (valorSoNumero && valorFormatado) {
-            return (valorSoNumero.length <= 11) && (!valorFormatado.includes("/"));
+            return (valorSoNumero.length <= 11) && (!valorFormatado.includes('/'));
         }
 
         return false;
     }
 
     static limparValidators(form: FormGroup, field: string, childField?: string): void {
-      if(!form) {
+      if (!form) {
         return ;
       }
 
@@ -127,14 +127,14 @@ export class ValidacoesUtil {
         form.get(field).get(childField).updateValueAndValidity();
         return;
       }
-  
+
       form.get(field).markAsUntouched();
       form.get(field).clearValidators();
       form.get(field).updateValueAndValidity();
     }
-  
+
     static atualizarValidatorsRequired(form: FormGroup, field: string, childField?: string, newValidators?: ValidatorFn[]): void {
-      if(!form) {
+      if (!form) {
         return ;
       }
 
@@ -142,13 +142,13 @@ export class ValidacoesUtil {
       if (newValidators) {
         validators = validators.concat(newValidators);
       }
-  
+
       if (childField) {
         form.get(field).get(childField).setValidators(validators);
         form.get(field).get(childField).updateValueAndValidity();
         return;
       }
-  
+
       form.get(field).setValidators(validators);
       form.get(field).updateValueAndValidity();
     }
