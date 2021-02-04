@@ -8,15 +8,16 @@ import { UsuarioListResponse } from '../shared/usuario-list-response.model';
 import { UsuarioRequest } from '../shared/usuario-request.model';
 import { UsuarioResponse } from '../shared/usuario-response.model';
 import { UsuarioService } from '../shared/usuario.service';
+import { RdService } from '@app/shared/service/rd.service';
 
 @Component({
   selector: 'app-usuario-listing',
   templateUrl: './usuario-listing.component.html',
   providers: [
-    { provide: CrudService, useClass: UsuarioService }
+    { provide: RdService, useClass: UsuarioService }
   ]
 })
-export class UsuarioListingComponent extends CrudListing<UsuarioRequest, UsuarioResponse, UsuarioListResponse> {
+export class UsuarioListingComponent extends CrudListing<UsuarioResponse, UsuarioListResponse> {
 
   filter = new UsuarioListFilter();
 

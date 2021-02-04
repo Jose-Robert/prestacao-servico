@@ -4,6 +4,7 @@ import { Serializer } from './../../../shared/interface/serializer';
 import { ClienteForm } from './cliente-form';
 import { Injectable } from '@angular/core';
 import { ClienteListResponse } from './cliente-list-response.model';
+import { DateUtils } from '@app/shared/utils/date-utils';
 
 
 @Injectable()
@@ -17,7 +18,7 @@ export class ClienteSerializer implements Serializer<ClienteRequest, ClienteResp
       json.id,
       json.nome,
       json.cpf,
-      json.dataCadastro,
+      DateUtils.deserializeDateTimeToTimezoneLocal(json.dataCadastro),
       json.ativo
     );
   }

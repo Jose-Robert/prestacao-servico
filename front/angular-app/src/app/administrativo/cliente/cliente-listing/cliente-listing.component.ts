@@ -14,10 +14,10 @@ import { ClienteService } from '../shared/cliente.service';
   templateUrl: './cliente-listing.component.html',
   styleUrls: ['./cliente-listing.component.scss'],
   providers: [
-    { provide: CrudService, useClass: ClienteService }
+    { provide: RdService, useClass: ClienteService }
   ]
 })
-export class ClienteListingComponent extends CrudListing<ClienteRequest, ClienteResponse, ClienteListResponse> {
+export class ClienteListingComponent extends CrudListing<ClienteResponse, ClienteListResponse> {
 
   filter = new ClienteListFilter();
 
@@ -33,8 +33,8 @@ export class ClienteListingComponent extends CrudListing<ClienteRequest, Cliente
     return 'Clientes';
   }
 
-  protected loadAdditionalData(): Promise<void> {
-    this.list();
+  protected async loadAdditionalData(): Promise<void> {
+    await this.list();
     return Promise.resolve();
   }
 

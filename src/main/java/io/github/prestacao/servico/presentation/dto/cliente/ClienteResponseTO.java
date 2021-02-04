@@ -18,7 +18,7 @@ public class ClienteResponseTO implements Serializable {
 
 	private String cpf;
 	
-	private LocalDateTime dataCriacao;
+	private LocalDateTime dataCadastro;
 	
 	private boolean ativo;
 

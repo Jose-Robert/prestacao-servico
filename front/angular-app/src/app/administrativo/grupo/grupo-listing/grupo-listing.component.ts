@@ -1,22 +1,21 @@
 import { Component } from '@angular/core';
 
 import { CrudListing } from '@app/shared/component/crud/crud-listing/crud-listing';
-import { CrudService } from '@app/shared/service/crud.service';
 import { Route } from '@app/shared/enum/route.enum';
 import { GrupoListFilter } from '../shared/grupo-list-filter.model';
 import { GrupoListResponse } from './../shared/grupo-list-response.model';
 import { GrupoResponse } from './../shared/grupo-response.model';
-import { GrupoRequest } from './../shared/grupo-request.model';
 import { GrupoService } from '../shared/grupo.service';
+import { RdService } from '@app/shared/service/rd.service';
 
 @Component({
   selector: 'app-grupo-listing',
   templateUrl: './grupo-listing.component.html',
   providers: [
-    { provide: CrudService, useClass: GrupoService }
+    { provide: RdService, useClass: GrupoService }
   ]
 })
-export class GrupoListingComponent extends CrudListing<GrupoRequest, GrupoResponse, GrupoListResponse> {
+export class GrupoListingComponent extends CrudListing<GrupoResponse, GrupoListResponse> {
 
   filter = new GrupoListFilter;
 

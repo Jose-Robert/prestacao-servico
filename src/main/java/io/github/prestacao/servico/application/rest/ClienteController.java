@@ -1,6 +1,9 @@
 package io.github.prestacao.servico.application.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,9 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.github.prestacao.servico.domain.model.Cliente;
 import io.github.prestacao.servico.domain.service.ClienteService;
+import io.github.prestacao.servico.infrastructure.persistence.hibernate.specification.SpecificationFactory;
 import io.github.prestacao.servico.infrastructure.service.ConverterService;
 import io.github.prestacao.servico.infrastructure.service.ResponseServiceImpl;
 import io.github.prestacao.servico.presentation.ResponseTO;
+import io.github.prestacao.servico.presentation.dto.cliente.ClienteFilterRequestTO;
+import io.github.prestacao.servico.presentation.dto.cliente.ClienteReducedResponseTO;
 import io.github.prestacao.servico.presentation.dto.cliente.ClienteRequestTO;
 import io.github.prestacao.servico.presentation.dto.cliente.ClienteResponseTO;
 
@@ -33,6 +39,20 @@ public class ClienteController {
 	
 	@Autowired
 	private ConverterService converterService;
+	
+	@Autowired
+    private SpecificationFactory<Cliente> specificationFactory;
+	
+	@GetMapping
+	public ResponseEntity<ResponseTO<Page<ClienteReducedResponseTO>>> listar(ClienteFilterRequestTO filterRequestTO,
+			Pageable pageable) {
+
+		Specification<Cliente> specification = specificationFactory.create(filterRequestTO);
+		Page<Cliente> page = clienteService.listar(specification, pageable);
+		Page<ClienteReducedResponseTO> responseTOPage = converterService.convert(page, ClienteReducedResponseTO.class);
+
+		return responseService.ok(responseTOPage);
+	}
 	
 	@PostMapping
 	public ResponseEntity<ResponseTO<ClienteResponseTO>> salvar(@RequestBody ClienteRequestTO requestTO) {

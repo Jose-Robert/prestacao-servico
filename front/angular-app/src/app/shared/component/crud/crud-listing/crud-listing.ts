@@ -15,11 +15,12 @@ import { StorageService } from '@app/shared/service/storage.service';
 import { TitleService } from '@app/shared/service/title.service';
 import { ToastService } from '@app/shared/service/toast.service';
 import { ListFilter } from '@app/shared/models/list-filter.model';
+import { RdService } from '@app/shared/service/rd.service';
 
 @Directive()
 @Injectable()
-export abstract class CrudListing<T extends RequestModel, U extends ResponseModel, L extends ResponseListModel>
-  implements OnInit, AfterViewInit, OnDestroy {
+export abstract class CrudListing<U extends ResponseModel, L extends ResponseListModel>
+implements OnInit, AfterViewInit, OnDestroy {
 
   filter = new ListFilter();
 
@@ -35,12 +36,12 @@ export abstract class CrudListing<T extends RequestModel, U extends ResponseMode
   protected autoUpdatePeriod = 10000;
   protected autoUpdateSubscripion: Subscription;
 
-  @ViewChild('table') protected table: Table;
+  @ViewChild('table', { static: false }) protected table: Table;
 
   constructor(
     protected changeDetectorRef: ChangeDetectorRef,
     protected confirmationService: ConfirmationService,
-    protected service: CrudService<T, U, L>,
+    protected service: RdService<U, L>,
     protected titleService: TitleService,
     protected toastService: ToastService,
     protected breadcrumbService: BreadcrumbService,
@@ -63,12 +64,12 @@ export abstract class CrudListing<T extends RequestModel, U extends ResponseMode
     this.stopAutoUpdate();
   }
 
-  list(page = 0): void {
+  async list(page = 0): Promise<void> {
     this._listInitialized = true;
     this._loadingDataTable = true;
     this.filter.page = page;
 
-    this.service.list(this.filter).subscribe((pageable: Pageable<L>) => {
+    this.service.list(this.filter).toPromise().then((pageable: Pageable<L>) => {
       if (pageable) {
         this._registerList = pageable.content;
         this._rows = pageable.size;
