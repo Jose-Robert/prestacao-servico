@@ -1,10 +1,10 @@
 import { ClienteService } from './shared/cliente.service';
 import { ClienteComponent } from './cliente.component';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { SharedModule } from '@app/shared/shared.module';
 import { ClienteRegistrationComponent } from './cliente-registration/cliente-registration.component';
 import { ClienteRoutingModule } from './cliente-routing.module';
+import { ClienteListingComponent } from './cliente-listing/cliente-listing.component';
 
 
 
@@ -12,11 +12,11 @@ import { ClienteRoutingModule } from './cliente-routing.module';
   imports: [
     SharedModule,
     ClienteRoutingModule,
-    CommonModule
   ],
   declarations: [
     ClienteComponent,
-    ClienteRegistrationComponent
+    ClienteRegistrationComponent,
+    ClienteListingComponent
   ],
   providers: [
     ClienteService

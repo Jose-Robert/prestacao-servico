@@ -1,9 +1,10 @@
 import { ListFilter, ListSortFilter } from '@app/shared/models/list-filter.model';
 
-export class GrupoListFilter extends ListFilter {
+export class ClienteListFilter extends ListFilter {
 
   constructor(
     public nome = '',
+    public cpf = '',
     public ativo = true,
     public page = 0,
     public size = 10,

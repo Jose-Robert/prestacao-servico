@@ -10,3 +10,8 @@ export interface Serializer<T extends RequestModel, U extends ResponseModel, L e
   fromResponseModelToForm(model: ResponseModel): FormGroup;
   fromFormToRequestModel(form: FormGroup): T;
 }
+
+export interface ReadSerializer<U extends ResponseModel, L extends ResponseListModel> {
+  fromJsonToResponseModel(json: any): U;
+  fromJsonToResponseListModel(json: any): L;
+}

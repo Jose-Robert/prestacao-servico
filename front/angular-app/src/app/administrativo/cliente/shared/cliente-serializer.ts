@@ -3,16 +3,23 @@ import { ClienteRequest } from './cliente-resquest.model';
 import { Serializer } from './../../../shared/interface/serializer';
 import { ClienteForm } from './cliente-form';
 import { Injectable } from '@angular/core';
+import { ClienteListResponse } from './cliente-list-response.model';
 
 
 @Injectable()
-export class ClienteSerializer implements Serializer<ClienteRequest, ClienteResponse, any> {
+export class ClienteSerializer implements Serializer<ClienteRequest, ClienteResponse, ClienteListResponse> {
 
   fromJsonToResponseModel(json: any): ClienteResponse {
     throw new Error('Method not implemented.');
   }
-  fromJsonToResponseListModel(json: any) {
-    throw new Error('Method not implemented.');
+  fromJsonToResponseListModel(json: any): ClienteListResponse {
+    return new ClienteListResponse(
+      json.id,
+      json.nome,
+      json.cpf,
+      json.dataCadastro,
+      json.ativo
+    );
   }
   fromResponseModelToForm(model: ClienteResponse): ClienteForm {
     const form = new ClienteForm();

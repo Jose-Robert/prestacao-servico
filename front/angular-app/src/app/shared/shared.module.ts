@@ -53,6 +53,8 @@ import { StorageService } from './service/storage.service';
 import { TitleService } from './service/title.service';
 import { CEPPipe } from './pipe/cep.pipe';
 import { OrderPipe } from './pipe/order.pipe';
+import { BrMaskerModule } from 'br-mask';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 
 // Modules
 const angularModules: Array<Type<any> | any[]> = [
@@ -85,6 +87,12 @@ const primeNgModules: Array<Type<any> | any[]> = [
   TableModule,
   ToastModule,
   TooltipModule
+];
+
+// Bibliotecas
+const libraryModules: Array<Type<any> | any[]> = [
+  BrMaskerModule,
+  CurrencyMaskModule
 ];
 
 // Components, Directives and Pipes
@@ -131,14 +139,16 @@ const sharedProviders: Array<Type<any> | any[]> = [
 @NgModule({
   imports: [
     angularModules,
-    primeNgModules
+    primeNgModules,
+    libraryModules
   ],
   exports: [
     angularModules,
     primeNgModules,
     sharedComponents,
     sharedDirectives,
-    sharedPipes
+    sharedPipes,
+    libraryModules
   ],
   declarations: [
     sharedComponents,

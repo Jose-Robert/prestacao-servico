@@ -6,6 +6,7 @@ import { BreadcrumbService } from '@app/shared/service/breadcrumb.service';
 import { TitleService } from '@app/shared/service/title.service';
 import { ToastService } from '@app/shared/service/toast.service';
 import { ClienteForm } from '../shared/cliente-form';
+import { ClienteListResponse } from '../shared/cliente-list-response.model';
 import { ClienteRequest } from '../shared/cliente-resquest.model';
 import { ClienteResponse } from '../shared/cliente.response.model';
 import { ClienteService } from '../shared/cliente.service';
@@ -16,7 +17,7 @@ import { ClienteService } from '../shared/cliente.service';
   styleUrls: ['./cliente-registration.component.scss'],
   providers: [ClienteService]
 })
-export class ClienteRegistrationComponent extends CrudRegistration<ClienteRequest, ClienteResponse, any> {
+export class ClienteRegistrationComponent extends CrudRegistration<ClienteRequest, ClienteResponse, ClienteListResponse> {
 
   protected _form = new ClienteForm();
 
@@ -41,7 +42,7 @@ export class ClienteRegistrationComponent extends CrudRegistration<ClienteReques
       : this.breadcrumbService.add('Cadastro de Cliente', [`/${Route.ADMINISTRATIVO_CLIENTES}/${Route.GENERICO_CADASTRAR}`]);
   }
 
-  protected redirectToListing(): void {
+  public redirectToListing(): void {
     this.router.navigate([`/${Route.ADMINISTRATIVO_CLIENTES}`]);
   }
 
