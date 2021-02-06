@@ -1,28 +1,29 @@
 package io.github.prestacao.servico.presentation.dto.cliente;
 
-import java.time.LocalDateTime;
+import java.io.Serializable;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class ClienteReducedResponseTO {
+public class ClienteReducedResponseTO implements Serializable {
 	
+	private static final long serialVersionUID = 3529315043658391184L;
+
 	private Long id;
 
     private String nome;
     
     private String cpf;
     
-    private LocalDateTime dataCadastro;
-    
-    private Boolean ativo;
+    private boolean ativo;
     
     
     @Override
     public String toString() {
-        return String.format("ClienteReducedResponseTO [id=%s, descricao=%s, ativo=%s]", id, nome, cpf, dataCadastro, ativo);
+        return String.format("ClienteReducedResponseTO [id=%s, nome=%s, cpf=%s, ativo=%s]",
+        		id, nome, cpf, ativo);
     }
 
 }

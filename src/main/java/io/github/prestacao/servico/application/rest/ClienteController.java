@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import io.github.prestacao.servico.domain.model.Cliente;
 import io.github.prestacao.servico.domain.service.ClienteService;
 import io.github.prestacao.servico.infrastructure.persistence.hibernate.specification.SpecificationFactory;
@@ -48,9 +49,9 @@ public class ClienteController {
 			Pageable pageable) {
 
 		Specification<Cliente> specification = specificationFactory.create(filterRequestTO);
-		Page<Cliente> page = clienteService.listar(specification, pageable);
-		Page<ClienteReducedResponseTO> responseTOPage = converterService.convert(page, ClienteReducedResponseTO.class);
-
+        Page<Cliente> page = clienteService.listar(specification, pageable);
+        Page<ClienteReducedResponseTO> responseTOPage = converterService.convert(page,
+        		ClienteReducedResponseTO.class);
 		return responseService.ok(responseTOPage);
 	}
 	

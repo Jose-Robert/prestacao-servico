@@ -82,11 +82,6 @@
       <ng-template pTemplate="body" let-rowData let-expanded="expanded">
         <tr>
           <td>
-            <a href="#" class="btn-row-toggler" [pRowToggler]="rowData" (click)="find(rowData.id, expanded)">
-              <i [ngClass]="expanded ? 'fa fa-fw fa-chevron-circle-down' : 'fa fa-fw fa-chevron-circle-right'"></i>
-            </a>
-          </td>
-          <td>
             <span class="ui-column-title">Nome</span>
             {{rowData.nome}}
           </td>
@@ -105,29 +100,6 @@
             <span class="ui-column-title">Ações</span>
             <a pButton class="ui-button-link btn-action btn-editar" icon="fa fa-pencil" pTooltip="Editar" tooltipPosition="top"
               [routerLink]="getEditarRouterLink(rowData.id)"></a>
-          </td>
-        </tr>
-      </ng-template>
-
-      <ng-template pTemplate="rowexpansion" let-rowData>
-        <tr class="expanded-row-content">
-          <td colspan="5">
-            <p *ngIf="loadingExpandedRow; else tplRegister">Carregando...</p>
-            <ng-template #tplRegister>
-              <div class="scroll" *ngIf="register">
-                <dl>
-                  <dt>E-mail</dt>
-                  <dd>{{register.email}}</dd>
-
-                  <dt>Grupos</dt>
-                  <dd>
-                    <ul class="list-unstyled no-margin" *ngIf="register.grupos && register.grupos.length; else tplNoData">
-                      <li *ngFor="let grupo of register.grupos">{{grupo.nome}}</li>
-                    </ul>
-                  </dd>
-                </dl>
-              </div>
-            </ng-template>
           </td>
         </tr>
       </ng-template>

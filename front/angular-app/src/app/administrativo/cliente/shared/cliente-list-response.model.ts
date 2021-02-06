@@ -6,7 +6,6 @@ export class ClienteListResponse implements ResponseListModel {
     public id: number,
     public nome: string,
     public cpf: string,
-    public dataCadastro: Date,
     public ativo: boolean
   ) { }
 }

@@ -1,3 +1,4 @@
+import { RdService } from '@app/shared/service/rd.service';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
@@ -11,7 +12,8 @@ import { ResponseModel } from '../interface/response-model';
 import { Serializer } from '../interface/serializer';
 import { ListFilter } from '../models/list-filter.model';
 
-export abstract class CrudService<T extends RequestModel, U extends ResponseModel, L extends ResponseListModel> {
+export abstract class CrudService<T extends RequestModel, U extends ResponseModel, L extends ResponseListModel>
+extends RdService<U, L> {
 
   protected queryParamsFactory = new QueryParamsFactory();
 
@@ -20,7 +22,12 @@ export abstract class CrudService<T extends RequestModel, U extends ResponseMode
     protected _baseUrl: string,
     protected _endpointUrl: string,
     protected _serializer: Serializer<T, U, L>
-  ) { }
+  ) {
+    super(httpClient,
+      _baseUrl,
+      _endpointUrl,
+      _serializer);
+   }
 
   list(listFilter: ListFilter): Observable<Pageable<L>> {
     const params = this.queryParamsFactory.create(listFilter);

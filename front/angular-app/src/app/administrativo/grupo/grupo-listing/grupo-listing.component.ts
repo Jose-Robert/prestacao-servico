@@ -17,6 +17,10 @@ import { RdService } from '@app/shared/service/rd.service';
 })
 export class GrupoListingComponent extends CrudListing<GrupoResponse, GrupoListResponse> {
 
+  protected redirectToRegistration(): void {
+    throw new Error('Method not implemented.');
+  }
+
   filter = new GrupoListFilter;
 
   resetFilter(): void {

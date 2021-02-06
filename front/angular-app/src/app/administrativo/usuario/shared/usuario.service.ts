@@ -15,7 +15,7 @@ import { UsuarioResponse } from './usuario-response.model';
 @Injectable()
 export class UsuarioService extends CrudService<UsuarioRequest, UsuarioResponse, UsuarioListResponse> {
 
-  private _endpointPerfilUrl = '/me';
+  private _endpointPerfilUrl = '';
 
   constructor(protected httpClient: HttpClient) {
     super(httpClient, environment.apiAuthUrl, '/usuarios', new UsuarioSerializer());

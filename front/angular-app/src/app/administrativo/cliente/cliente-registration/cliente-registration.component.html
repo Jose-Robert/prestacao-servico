@@ -6,10 +6,10 @@
 
     <form class="form form-horizontal form-cadastro" [formGroup]="form" [class.submitted]="formSubmitted" (ngSubmit)="save()">
       <p-fieldset legend="Informações Pessoais" styleClass="fieldset-informacoes-pessoais">
-        <app-input-text label="Nome" [control]="form.get('nome')" inputId="nome" orientation="horizontal" [autoFocus]="true"
+        <app-input-text label="Nome" [control]="form.get('nome')" inputId="nome" orientation="horizontal" [autoFocus]="false"
           [required]="true" [submitted]="formSubmitted">
         </app-input-text>
-        <app-input-text label="CPF" [control]="form.get('cpf')" inputId="cpf" orientation="horizontal" [autoFocus]="true"
+        <app-input-text label="CPF" [control]="form.get('cpf')" inputId="cpf" orientation="horizontal" [autoFocus]="false"
           [required]="true" [submitted]="formSubmitted">
         </app-input-text>
       </p-fieldset> <!--/.fieldset-informacoes-pessoais-->

@@ -19,6 +19,10 @@ import { RdService } from '@app/shared/service/rd.service';
 })
 export class UsuarioListingComponent extends CrudListing<UsuarioResponse, UsuarioListResponse> {
 
+  protected redirectToRegistration(): void {
+    throw new Error('Method not implemented.');
+  }
+
   filter = new UsuarioListFilter();
 
   resetFilter(): void {

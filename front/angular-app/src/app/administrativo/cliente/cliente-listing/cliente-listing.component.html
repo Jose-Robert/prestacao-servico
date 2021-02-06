@@ -35,6 +35,7 @@
           <div class="ui-g-12 form-group-botoes">
             <button pButton type="submit" icon="fa fa-list" label="Listar"></button>
             <button pButton type="button" class="ui-button-secondary" icon="fa fa-eraser" label="Limpar" (click)="resetFilter()"></button>
+            <button pButton type="button" class="ui-button-success" icon="fa fa-plus" label="Incluir" (click)="redirectToRegistration()"></button>
           </div>
         </div>
       </p-fieldset>
@@ -43,7 +44,7 @@
     <p-table #table *ngIf="listInitialized" [value]="registerList" dataKey="id" [responsive]="true" [autoLayout]="true"
       [loading]="loadingDataTable" loadingIcon="fa fa-spinner" [resizableColumns]="true"
       [paginator]="registerList && registerList.length" [rows]="rows" [totalRecords]="totalRecords"
-      [lazy]="true" (onLazyLoad)="changePage($event)"
+      [lazy]="true" (onLazyLoad)="changePage($event)" rowExpandMode="single"
       sortMode="multiple" (onSort)="changeSort($event.multisortmeta)">
 
       <ng-template pTemplate="summary">
@@ -67,9 +68,6 @@
           <th pResizableColumn>
             CPF
           </th>
-          <th pResizableColumn>
-            Data de Cadastro
-          </th>
           <th style="width: 100px">
             Status <ng-container *ngTemplateOutlet="tplHeaderTooltipStatus"></ng-container>
           </th>
@@ -82,21 +80,12 @@
       <ng-template pTemplate="body" let-rowData let-expanded="expanded">
         <tr>
           <td>
-            <a href="#" class="btn-row-toggler" [pRowToggler]="rowData" (click)="find(rowData.id, expanded)">
-              <i [ngClass]="expanded ? 'fa fa-fw fa-chevron-circle-down' : 'fa fa-fw fa-chevron-circle-right'"></i>
-            </a>
-          </td>
-          <td>
             <span class="ui-column-title">Nome</span>
             {{rowData.nome}}
           </td>
           <td>
-            <span class="ui-column-title">Login</span>
+            <span class="ui-column-title">CPF</span>
             {{rowData.cpf}}
-          </td>
-          <td>
-            <span class="ui-column-title">Login</span>
-            {{rowData.dataCadastro}}
           </td>
           <td class="text-center">
             <span class="ui-column-title">Status</span>
@@ -107,8 +96,11 @@
           </td>
           <td class="text-center">
             <span class="ui-column-title">Ações</span>
+            <a pButton class="ui-button-link btn-action btn-editar" icon="fa fa-eye" pTooltip="Detalhes" tooltipPosition="top"></a>
             <a pButton class="ui-button-link btn-action btn-editar" icon="fa fa-pencil" pTooltip="Editar" tooltipPosition="top"
               [routerLink]="getEditarRouterLink(rowData.id)"></a>
+            <a pButton class="ui-button-link btn-action btn-editar" icon="fa fa-trash" pTooltip="Excluir" tooltipPosition="top"
+              (click)="confirmDelete(rowData)"></a>
           </td>
         </tr>
       </ng-template>

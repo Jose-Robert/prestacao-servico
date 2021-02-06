@@ -18,7 +18,6 @@ export class ClienteSerializer implements Serializer<ClienteRequest, ClienteResp
       json.id,
       json.nome,
       json.cpf,
-      DateUtils.deserializeDateTimeToTimezoneLocal(json.dataCadastro),
       json.ativo
     );
   }
@@ -29,7 +28,7 @@ export class ClienteSerializer implements Serializer<ClienteRequest, ClienteResp
       id: model.id,
       nome: model.nome,
       cpf: model.cpf,
-      dataCadastro: model.dataCadastro
+      ativo: model.ativo
     });
 
     return form;

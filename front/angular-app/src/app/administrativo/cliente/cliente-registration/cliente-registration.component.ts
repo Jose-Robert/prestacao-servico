@@ -33,7 +33,9 @@ export class ClienteRegistrationComponent extends CrudRegistration<ClienteReques
     super(activatedRoute, changeDetectorRef, router, service, titleService, toastService, breadcrumbService);
    }
 
-   protected async loadAdditionalData(): Promise<void> {}
+   protected async loadAdditionalData(): Promise<void> {
+     return Promise.resolve();
+   }
 
   protected initBreadcrumb(): void {
     this.breadcrumbService.clearAndAdd('Clientes', [`/${Route.ADMINISTRATIVO_CLIENTES}`]);

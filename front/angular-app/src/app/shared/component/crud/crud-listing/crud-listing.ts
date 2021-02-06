@@ -6,21 +6,18 @@ import { ConfirmationService, LazyLoadEvent, SelectItem, SortMeta } from 'primen
 import { Table } from 'primeng/table';
 
 import { Pageable } from '@app/shared/interface/pageable';
-import { RequestModel } from '@app/shared/interface/request-model';
 import { ResponseListModel } from '@app/shared/interface/response-list-model';
 import { ResponseModel } from '@app/shared/interface/response-model';
 import { BreadcrumbService } from '@app/shared/service/breadcrumb.service';
-import { CrudService } from '@app/shared/service/crud.service';
-import { StorageService } from '@app/shared/service/storage.service';
 import { TitleService } from '@app/shared/service/title.service';
 import { ToastService } from '@app/shared/service/toast.service';
 import { ListFilter } from '@app/shared/models/list-filter.model';
 import { RdService } from '@app/shared/service/rd.service';
+import { Router } from '@angular/router';
 
-@Directive()
 @Injectable()
 export abstract class CrudListing<U extends ResponseModel, L extends ResponseListModel>
-implements OnInit, AfterViewInit, OnDestroy {
+  implements OnInit, AfterViewInit, OnDestroy {
 
   filter = new ListFilter();
 
@@ -28,8 +25,6 @@ implements OnInit, AfterViewInit, OnDestroy {
   protected _listInitialized = false;
   protected _loading = false;
   protected _loadingDataTable = false;
-  protected _loadingExpandedRow: boolean;
-  protected _register: U;
   protected _registerList: L[];
   protected _rows = 0;
   protected _totalRecords = 0;
@@ -45,7 +40,7 @@ implements OnInit, AfterViewInit, OnDestroy {
     protected titleService: TitleService,
     protected toastService: ToastService,
     protected breadcrumbService: BreadcrumbService,
-    protected storageService: StorageService
+    protected router: Router,
   ) { }
 
   async ngOnInit(): Promise<void> {
@@ -112,19 +107,6 @@ implements OnInit, AfterViewInit, OnDestroy {
     this.table.first = 0;
   }
 
-  find(id: number, expanded: boolean): void {
-    if (expanded || (this._register && this._register.id === id)) {
-      return;
-    }
-
-    this._loadingExpandedRow = true;
-
-    this.service.find(id).subscribe(register => {
-      this._register = register;
-      this._loadingExpandedRow = false;
-    }, () => this._loadingExpandedRow = false);
-  }
-
   resetFilter(): void {
     this.filter = new ListFilter();
   }
@@ -136,11 +118,41 @@ implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-  changeStatus(model: ResponseListModel): void {
-    this.service.changeStatus(model.id).subscribe(() => {
-      model.ativo = !model.ativo;
-      this.toastService.addSuccess('', `Registro ${model.ativo ? 'ativado' : 'desativado'} com sucesso.`);
+  confirmDelete(model: ResponseListModel): void {
+    this.confirmationService.confirm({
+      message: `Tem certeza que deseja excluir o registro?`,
+      accept: () => {
+        this.delete(model);
+      }
     });
+  }
+
+  delete(model: ResponseListModel): void {
+    this.service.delete(model.id).toPromise().then(() => {
+      this.table.first = 0;
+      this.list();
+      this.toastService.addSuccess('', `Registro excluído com sucesso.`);
+    });
+  }
+
+  changeStatus(model: ResponseListModel): void {
+    this._loading = true;
+    this.service.changeStatus(model.id).subscribe(() => {
+      this.service.find(model.id).toPromise().then(response => {
+        this.updateRegisterByIndex(response);
+        this.toastService.addSuccess('', `Registro ${model.ativo ? 'desativado' : 'ativado'} com sucesso.`);
+        this._loading = false;
+      });
+    });
+  }
+
+  private updateRegisterByIndex(register: any): void {
+    const index = this.registerList.map((registro) => registro.id ).indexOf(register.id);
+    if(index === -1) {
+      return;
+    }
+
+    this.registerList[index] = register;
   }
 
   get actualPage(): number {
@@ -181,21 +193,13 @@ implements OnInit, AfterViewInit, OnDestroy {
     return this._loadingDataTable;
   }
 
-  get loadingExpandedRow(): boolean {
-    return this._loadingExpandedRow;
-  }
-
-  get register(): U {
-    return this._register;
-  }
-
   get registerList(): L[] {
     return this._registerList;
   }
 
   get sizeFilterOptions(): SelectItem[] {
     return [
-      { label: '--', value: 1000 },
+      { label: 'Todos', value: 1000 },
       { label: '10', value: 10 },
       { label: '20', value: 20 },
       { label: '30', value: 30 },
@@ -206,7 +210,7 @@ implements OnInit, AfterViewInit, OnDestroy {
 
   get statusFilterOptions(): SelectItem[] {
     return [
-      { label: '--', value: null },
+      { label: 'Todos', value: null },
       { label: 'Ativos', value: true },
       { label: 'Inativos', value: false }
     ];
@@ -248,4 +252,6 @@ implements OnInit, AfterViewInit, OnDestroy {
   protected abstract loadAdditionalData(): Promise<void>;
 
   protected abstract initBreadcrumb(): void;
+
+  protected abstract redirectToRegistration(): void;
 }
