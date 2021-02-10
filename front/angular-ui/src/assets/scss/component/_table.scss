@@ -1,0 +1,115 @@
+body .ui-table {
+  table {
+    thead th,
+    tfoot td,
+    tbody td { padding: .5em !important }
+
+    thead {
+      th, td {
+        background-color: #fff;
+        font-weight: 600;
+        text-align: center;
+      }
+    }
+
+    tbody {
+      tr { background-color: #fff }
+      tr:nth-of-type(odd) { background-color: rgba(0,0,0,.05) }
+
+      td {
+        &.text-center {
+          @media screen and (max-width: 640px) { text-align: left !important }
+        }
+
+        .btn-action {
+          border: none;
+          margin-right: .1em;
+          padding: .2em;
+
+          &:last-child { margin-right: 0 }
+        }
+      }
+    }
+
+    td, th { border: $tableBorder }
+
+    .emptymessage { text-align: center }
+  }
+
+  // Paginator
+  .ui-paginator.ui-paginator-bottom {
+    border-bottom: $tableBorder;
+    font-size: .9em;
+
+    .ui-paginator-element {
+      height: 2.286em;
+      margin: 0;
+      min-width: 2.286em;
+      padding: 0;
+      vertical-align: top;
+    }
+
+    .ui-paginator-pages .ui-paginator-page { padding: .4em }
+  }
+
+  // Summary
+  .ui-table-caption,
+  .ui-table-summary {
+    border: $tableBorder;
+    color: #555;
+    padding: .5em;
+  }
+
+  // Loading
+  .ui-table-loading { opacity: .1 }
+  .ui-table-loading-content {
+    left: calc(50% - 20px);
+    top: calc(50% - 20px);
+  }
+
+  // Expanded row
+  .expanded-row-content {
+    .scroll {
+      max-height: 1000px;
+      overflow: auto;
+      padding: 10px;
+
+      .ui-panel {
+        background-color: transparent;
+        border: 1px solid #ddd;
+        margin-bottom: .5em;
+
+        .ui-panel-titlebar {
+          background-color: transparent;
+          border-bottom-color: #ddd;
+          color: #555;
+          font-weight: 600;
+          padding: .3em .7em;
+        }
+
+        .ui-panel-content { padding: .5em .7em }
+      }
+    }
+
+    .ui-accordion {
+      .ui-accordion-header {
+        a[id^=ui-accordiontab] { padding: .5em .2em }
+      }
+
+      .ui-accordion-content {
+        padding: 1em;
+
+        .scroll { padding: 0 }
+      }
+    }
+
+    .ui-g {
+      .indent { padding-left: .5em }
+    }
+
+    .break-text {
+      white-space: pre-line;
+      word-break: break-word;
+    }
+  }
+}

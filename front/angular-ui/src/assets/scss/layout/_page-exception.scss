@@ -1,0 +1,39 @@
+body .app-page-exception {
+  height: calc(100vh - 60px);
+  width: 100%;
+
+  .exception-type {
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 75%;
+    height: 50%;
+  }
+
+  &.unauthorized-page .exception-type {
+    background-color: #ff4949;
+    background-image: url('./assets/image/401.svg');
+  }
+
+  &.notfound-page .exception-type {
+    background-color: #3f51b5;
+    background-image: url('./assets/image/404.svg');
+  }
+
+  .exception-panel {
+    background-color: #fff;
+    box-shadow: 0 0 3px #888;
+    margin: -10% auto 0;
+    padding: 35px;
+    text-align: center;
+    width: 350px;
+
+    i { font-size: 60px }
+
+    h1 {
+      font-size: 25px;
+      margin: .75em 0;
+    }
+
+    .exception-detail { margin: 20px 0 }
+  }
+}

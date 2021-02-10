@@ -1,0 +1,95 @@
+body .dashboard {
+  .ui-dialog {
+    .chartjs-render-monitor {
+      max-height: calc(100vh - 100px);
+    }
+  }
+
+  .dashboard-title {
+    border-bottom: 4px solid #ccc;
+    font-size: 2em;
+    padding-bottom: .2em;
+  }
+
+  .colorbox {
+    color: #fff;
+    margin-bottom: 0px !important;
+    overflow: hidden;
+    padding: 0 !important;
+    text-align: center;
+
+    i {
+      font-size: 48px;
+    }
+
+    .colorbox-name {
+      display: block;
+      font-size: 20px;
+      line-height: 1em;
+      width: 100%;
+    }
+
+    .colorbox-count {
+      color: #fff;
+      display: block;
+      font-size: 36px;
+      font-weight: 600;
+      line-height: 1em;
+    }
+
+    div:first-child {
+      padding-top: 12px;
+    }
+
+    div:nth-child(2) {
+      padding-bottom: 6px;
+      padding-top: 10px;
+    }
+
+    &.colorbox-success {
+      background-color: $buttonSuccessBackgroundColor;
+
+      div:first-child {
+        background-color: $buttonSuccessBackgroundColorHover;
+      }
+    }
+
+    &.colorbox-warning {
+      background-color: $buttonWarningBackgroundColor;
+
+      div:first-child {
+        background-color: $buttonWarningBackgroundColorHover;
+      }
+    }
+
+    &.colorbox-danger {
+      background-color: $buttonDangerBackgroundColor;
+
+      div:first-child {
+        background-color: $buttonDangerBackgroundColorHover;
+      }
+    }
+
+    &.colorbox-info {
+      background-color: $buttonInfoBackgroundColor;
+
+      div:first-child {
+        background-color: $buttonInfoBackgroundColorHover;
+      }
+    }
+  }
+
+  .ui-panel {
+    &.group {
+      .ui-panel-titlebar .ui-panel-title { font-size: 2em }
+
+      &.status-success { border-color: $statusSuccess }
+      &.status-warning { border-color: $statusWarning }
+      &.status-error { border-color: $statusError }
+    }
+  }
+
+  .ui-card {
+    .ui-card-title { font-size: 1.5em }
+  }
+}

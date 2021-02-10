@@ -1,0 +1,9 @@
+<aside id="app-sidebar" [class.active]="active">
+  <section *ngIf="" class="header-profile">
+    <ul>
+      <li class="font-weight-bold">{{ 'usuario' }}</li>
+    </ul>
+  </section>
+
+  <p-panelMenu [model]="menuItems" [multiple]="false"></p-panelMenu>
+</aside>

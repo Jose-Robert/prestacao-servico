@@ -1,0 +1,21 @@
+body .ui-panel {
+  border-color: #e7eaec;
+  border-style: solid solid none;
+  border-width: 2px 0 0;
+  border-radius: 0;
+
+  .ui-panel-titlebar {
+    background-color: #fff;
+    border-bottom-color: #e7eaec;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-radius: 0;
+
+    .app-panel-expand {
+      color: #767b7f;
+      margin-right: .2em;
+    }
+  }
+
+  .ui-panel-content { position: relative }
+}

@@ -1,0 +1,31 @@
+<div *ngIf="orientation === 'vertical'; else tplHorizontal" class="ui-g">
+  <div [class]="verticalDivClass">
+    <div class="ui-g form-group-{{inputId}}">
+      <label [for]="inputId" [ngClass]="{ 'ui-g-12 control-label': true, 'required': required }">{{label}}</label>
+      <div class="ui-g-12">
+        <ng-container *ngTemplateOutlet="tplInput"></ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #tplHorizontal>
+  <div class="ui-g form-group-{{inputId}}">
+    <label [for]="inputId"
+      [ngClass]="{ 'ui-sm-12 ui-md-2 control-label': true, 'required': required }">{{label}}</label>
+    <div class="ui-sm-12 ui-md-4">
+      <ng-container *ngTemplateOutlet="tplInput"></ng-container>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #tplInput>
+
+  <p-chips [inputId]="inputId" [formControl]="control" [appAutoFocus]="autoFocus"
+  inputStyleClass="form-control"
+    [appBlockCopyPaste]="blockCopyPaste" [pKeyFilter]="keyFilter" (onBlur)="blured.emit($event)"
+    (onChange)="changed.emit($event)" (onClick)="clicked.emit($event)" (onFocus)="focused.emit($event)"
+    addOnTab="true" addOnBlur="true" [allowDuplicate]="false"></p-chips>
+  <app-validation *ngIf="validation" [control]="control" [submitted]="submitted"></app-validation>
+
+</ng-template>

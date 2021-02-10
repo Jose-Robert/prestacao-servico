@@ -1,0 +1,59 @@
+body .app-tag,
+body .app-tag.ui-button {
+  border: 1px solid transparent;
+  border-radius: 2px;
+  font-weight: 600;
+  font-size: .9em;
+  padding: 3px 8px;
+
+  &.app-tag-primary {
+    background-color: #1a7bb9;
+    color: #fff;
+
+    &:enabled:hover,
+    &:focus { background-color: #096aa8 }
+  }
+
+  &.app-tag-secondary {
+    background-color: #fff;
+    border-color: #d7dadc;
+    color: #333;
+
+    &:enabled:hover,
+    &:focus { background-color: #e6e6e6 }
+  }
+
+  &.app-tag-success {
+    background-color: #18a689;
+    color: #fff;
+
+    &:enabled:hover,
+    &:focus { background-color: #079578 }
+  }
+
+  &.app-tag-danger {
+    background-color: #ec4758;
+    color: #fff;
+
+    &:enabled:hover,
+    &:focus { background-color: #db3647 }
+  }
+
+  &.app-tag-warning {
+    background-color: #f7a54a;
+    color: #333;
+
+    &:enabled:hover,
+    &:focus { background-color: #e69439 }
+  }
+
+  &.app-tag-info {
+    background-color: #21b9bb;
+    color: #fff;
+
+    &:enabled:hover,
+    &:focus { background-color: #10a8aa }
+  }
+
+  .ui-button-text { padding: 0 }
+}
