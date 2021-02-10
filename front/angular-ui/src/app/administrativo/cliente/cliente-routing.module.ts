@@ -1,17 +1,18 @@
+import { ClienteRegistrationComponent } from './cliente-registration/cliente-registration.component';
+import { ClienteComponent } from './cliente.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { Route } from '@app/shared/enum/route.enum';
 
-import { AdministrativoComponent } from './administrativo.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AdministrativoComponent,
+    component: ClienteComponent,
     children: [
       {
-        path: Route.CLIENTES,
-        loadChildren: () => import('./cliente/cliente.module').then(m => m.ClienteModule),
+        path: Route.GENERICO_CADASTRAR,
+        component: ClienteRegistrationComponent,
       },
     ]
   }
@@ -21,4 +22,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AdministrativoRoutingModule { }
+export class ClienteRoutingModule { }

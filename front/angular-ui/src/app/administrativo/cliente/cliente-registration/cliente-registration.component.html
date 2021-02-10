@@ -1,0 +1,32 @@
+<app-page-header [title]="title"></app-page-header>
+
+<div class="page-content">
+  <p-panel [showHeader]="false">
+    <app-panel-loader [visible]="loading"></app-panel-loader>
+
+    <form [formGroup]="form" (ngSubmit)="save()"
+      [ngClass]="{ 'form form-horizontal form-cadastro': true, 'submitted': formSubmitted }">
+
+      <p-fieldset legend="Informações Pessoais" styleClass="fieldset-informacoes-pessoais">
+      <app-input-text label="Nome" [control]="form.get('nome')" inputId="nome" orientation="horizontal"
+        [autoFocus]="false" [required]="true" [submitted]="formSubmitted" appAutoFocus>
+      </app-input-text>
+      <app-input-text label="CPF" [control]="form.get('cpf')" inputId="cpf" orientation="horizontal" maxlength=14 placeholder="999.999.999-99"
+        [autoFocus]="false" [required]="true" [submitted]="formSubmitted" [brmasker]="{person: true}" appAutoFocus>
+      </app-input-text>
+      </p-fieldset>
+
+      <app-input-switch label="Status" [control]="form.get('ativo')" inputId="ativo" orientation="horizontal"
+        on="Ativo" off="Inativo"></app-input-switch>
+
+      <div class="ui-g form-group-botoes">
+        <div class="ui-sm-12 ui-md-10 ui-md-offset-2">
+          <button pButton type="button" class="ui-button-primary" icon="fa fa-arrow-left" label="Voltar" (click)="redirectToListing()"></button>
+          <button pButton type="submit" class="ui-button-success" icon="fa fa-save" label="Salvar"></button>
+        </div>
+      </div>
+      <!--.form-group-botoes-->
+    </form>
+  </p-panel>
+</div>
+<!--/.page-content-->

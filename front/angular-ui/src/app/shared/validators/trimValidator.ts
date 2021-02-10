@@ -7,12 +7,12 @@ export const trimValidator: ValidatorFn = (control: FormControl) => {
 
   if (control.value.startsWith(' ')) {
     return {
-      'trimError': { value: 'control has leading whitespace' }
+      trimError: { value: 'control has leading whitespace' }
     };
   }
   if (control.value.endsWith(' ')) {
     return {
-      'trimError': { value: 'control has trailing whitespace' }
+      trimError: { value: 'control has trailing whitespace' }
     };
   }
   return null;

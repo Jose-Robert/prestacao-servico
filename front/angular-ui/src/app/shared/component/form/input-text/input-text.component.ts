@@ -1,7 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { FormInput } from '../form-input';
-import { BrMaskModel } from 'br-mask';
 
 export enum Type {
   EMAIL = 'email',
