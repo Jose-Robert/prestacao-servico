@@ -5,13 +5,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ClienteComponent } from './cliente.component';
 import { ClienteRegistrationComponent } from './cliente-registration/cliente-registration.component';
+import { ClienteListingComponent } from './cliente-listing/cliente-listing.component';
 
 
 
 @NgModule({
   declarations: [
     ClienteComponent,
-    ClienteRegistrationComponent],
+    ClienteRegistrationComponent,
+    ClienteListingComponent
+  ],
   imports: [
     CommonModule,
     SharedModule,

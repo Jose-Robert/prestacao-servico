@@ -1,3 +1,4 @@
+import { ClienteListingComponent } from './cliente-listing/cliente-listing.component';
 import { ClienteRegistrationComponent } from './cliente-registration/cliente-registration.component';
 import { ClienteComponent } from './cliente.component';
 import { NgModule } from '@angular/core';
@@ -11,9 +12,17 @@ const routes: Routes = [
     component: ClienteComponent,
     children: [
       {
+        path: '',
+        component: ClienteListingComponent,
+      },
+      {
         path: Route.GENERICO_CADASTRAR,
         component: ClienteRegistrationComponent,
       },
+      {
+        path: Route.GENERICO_EDITAR,
+        component: ClienteRegistrationComponent,
+      }
     ]
   }
 ];

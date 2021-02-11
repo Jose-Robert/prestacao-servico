@@ -12,7 +12,6 @@ export class ClienteForm extends FormGroup {
       ]),
       cpf: new FormControl('', [
         Validators.required,
-        ValidatorCpfCpnj.ValidaCpf
       ]),
       ativo: new FormControl(true, Validators.required)
     });

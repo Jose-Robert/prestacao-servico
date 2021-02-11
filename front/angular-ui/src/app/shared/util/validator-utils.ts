@@ -1,3 +1,4 @@
+import { StringUtils } from './string-utils';
 import { FormGroup, ValidatorFn, Validators } from '@angular/forms';
 
 export class ValidacoesUtil {
@@ -57,27 +58,29 @@ export class ValidacoesUtil {
 
     static validarCPF(cpf): boolean {
 
-        if (!cpf || cpf.trim() === '' || cpf.length !== 11) {
+      const cpfSoNumeros = StringUtils.removeCaracteresEspeciais(cpf);
+
+        if (!cpfSoNumeros || cpfSoNumeros.trim() === '' || cpfSoNumeros.length !== 11) {
             return false;
         }
 
-        if (cpf.length !== 11 ||
-            cpf === '00000000000' ||
-            cpf === '11111111111' ||
-            cpf === '22222222222' ||
-            cpf === '33333333333' ||
-            cpf === '44444444444' ||
-            cpf === '55555555555' ||
-            cpf === '66666666666' ||
-            cpf === '77777777777' ||
-            cpf === '88888888888' ||
-            cpf === '99999999999') {
+        if (cpfSoNumeros.length !== 11 ||
+            cpfSoNumeros === '00000000000' ||
+            cpfSoNumeros === '11111111111' ||
+            cpfSoNumeros === '22222222222' ||
+            cpfSoNumeros === '33333333333' ||
+            cpfSoNumeros === '44444444444' ||
+            cpfSoNumeros === '55555555555' ||
+            cpfSoNumeros === '66666666666' ||
+            cpfSoNumeros === '77777777777' ||
+            cpfSoNumeros === '88888888888' ||
+            cpfSoNumeros === '99999999999') {
             return false;
         }
 
         let add = 0;
         for (let i = 0; i < 9; i++) {
-            add += parseInt(cpf.charAt(i)) * (10 - i);
+            add += parseInt(cpfSoNumeros.charAt(i)) * (10 - i);
         }
 
         let rev = 11 - (add % 11);
@@ -85,14 +88,14 @@ export class ValidacoesUtil {
             rev = 0;
         }
 
-        if (rev !== parseInt(cpf.charAt(9))) {
+        if (rev !== parseInt(cpfSoNumeros.charAt(9))) {
             return false;
         }
 
         add = 0;
 
         for (let i = 0; i < 10; i++) {
-            add += parseInt(cpf.charAt(i)) * (11 - i);
+            add += parseInt(cpfSoNumeros.charAt(i)) * (11 - i);
         }
 
         rev = 11 - (add % 11);
@@ -101,7 +104,7 @@ export class ValidacoesUtil {
             rev = 0;
         }
 
-        if (rev !== parseInt(cpf.charAt(10))) {
+        if (rev !== parseInt(cpfSoNumeros.charAt(10))) {
             return false;
         }
 

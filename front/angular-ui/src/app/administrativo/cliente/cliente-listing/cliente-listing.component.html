@@ -1,0 +1,121 @@
+<app-page-header [title]="title"></app-page-header>
+
+<div class="page-content">
+  <p-panel [showHeader]="false">
+    <app-panel-loader [visible]="loading"></app-panel-loader>
+
+    <form class="form form-filtros" (ngSubmit)="list()">
+      <p-fieldset legend="Opções de Filtro" [toggleable]="true">
+        <div class="ui-g">
+
+          <div class="ui-sm-12 ui-md-4 ui-lg-3 form-group-funcionario">
+            <label for="funcionario" class="control-label">Nome</label>
+            <input pInputText type="text" id="funcionario" class="form-control" name="funcionario"
+              [(ngModel)]="filter.nome" appAutoFocus>
+          </div>
+
+          <div class="ui-sm-12 ui-md-4 ui-lg-3 form-group-cpf">
+            <label for="cpf" class="control-label">CPF</label>
+            <input pInputText type="text" id="cpf" class="form-control" name="cpf" [(ngModel)]="filter.cpf"
+            [brmasker]="{mask: '000.000.000-00', len:14, type:'num'}" appAutoFocus>
+          </div>
+
+          <div class="ui-sm-12 ui-md-4 ui-lg-3 form-group-status">
+            <label for="status" class="control-label">Status</label>
+            <p-dropdown styleClass="form-control" inputId="status" name="status" [(ngModel)]="filter.ativo" [options]="statusFilterOptions" [filter]="true"></p-dropdown>
+          </div>
+
+          <div class="ui-sm-12 ui-md-4 ui-lg-3 form-group-registros">
+            <label for="size" class="control-label">Qtd. de Registros</label>
+            <p-dropdown styleClass="form-control" inputId="size" name="size" [(ngModel)]="filter.size"
+              [options]="sizeFilterOptions" [filter]="true"></p-dropdown>
+          </div>
+        </div>
+
+        <div class="ui-g">
+          <div class="ui-g-12 form-group-botoes">
+            <button pButton type="submit" icon="fa fa-list" label="Listar"></button>
+            <button pButton type="button" class="ui-button-secondary" icon="fa fa-eraser" label="Limpar"
+              (click)="resetFilter()"></button>
+              <button pButton type="button" class="ui-button-success" icon="fa fa-plus" label="Incluir"
+              (click)="redirectToRegistration()"></button>
+          </div>
+        </div>
+      </p-fieldset>
+    </form>
+
+    <p-table #table *ngIf="listInitialized" [value]="registerList" dataKey="id" [responsive]="true" [autoLayout]="true"
+      [loading]="loadingDataTable" loadingIcon="fa fa-spinner" [resizableColumns]="true"
+      [paginator]="registerList && registerList.length" [rows]="rows" [totalRecords]="totalRecords" [lazy]="true"
+      (onLazyLoad)="changePage($event)" rowExpandMode="single" sortMode="multiple"
+      (onSort)="changeSort($event.multisortmeta)">
+
+      <ng-template pTemplate="summary">
+        <div *ngIf="registerList && registerList.length" class="clearfix">
+          {{footer}}
+        </div>
+      </ng-template>
+
+      <ng-template pTemplate="emptymessage" let-columns>
+        <tr>
+          <td colspan="9" class="emptymessage">Nenhum registro encontrado</td>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th pResizableColumn>
+            Nome
+          </th>
+          <th pResizableColumn>
+            CPF
+          </th>
+          <th style="width: 100px">
+            Status <ng-container *ngTemplateOutlet="tplHeaderTooltipStatus"></ng-container>
+          </th>
+          <th style="width: 120px">
+            Ações
+          </th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-rowData let-expanded="expanded">
+        <tr>
+          <td>
+            <span class="ui-column-title">Nome</span>
+            {{rowData.nome}}
+          </td>
+          <td>
+            <span class="ui-column-title">CPF</span>
+            {{rowData.cpf | cnpjCpf}}
+          </td>
+          <td class="text-center">
+            <span class="ui-column-title">Status</span>
+            <button pButton appTag [tagValue]="rowData.ativo" [tagSuccess]="true" [tagDanger]="false" class="btn-status"
+              [label]="rowData.ativo | status" [pTooltip]="rowData.ativo | status:'Desativar':'Ativar'"
+              tooltipPosition="top" (click)="confirmChangeStatus(rowData)">
+            </button>
+          </td>
+          <td class="text-center">
+            <span class="ui-column-title">Ações</span>
+            <a pButton class="ui-button-link btn-action btn-editar" icon="fa fa-eye" pTooltip="Detalhes"
+              tooltipPosition="top"></a>
+              <a pButton class="ui-button-link btn-action btn-editar" icon="fa fa-pencil" pTooltip="Editar" tooltipPosition="top"
+              [routerLink]="getEditarRouterLink(rowData.id)"></a>
+              <a pButton class="ui-button-link btn-action btn-editar" icon="fa fa-trash" pTooltip="Excluir" tooltipPosition="top"
+              (click)="confirmDelete(rowData)"></a>
+          </td>
+        </tr>
+      </ng-template>
+
+    </p-table>
+  </p-panel>
+</div>
+<!--/.page-content-->
+
+<ng-template #tplNoData>--</ng-template>
+
+<ng-template #tplHeaderTooltipStatus>
+  <i class="fa fa-question-circle"
+    pTooltip="Clique no status para ativar/desativar o registro" tooltipPosition="top"></i>
+</ng-template>

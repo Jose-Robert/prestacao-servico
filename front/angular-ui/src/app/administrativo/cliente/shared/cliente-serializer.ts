@@ -35,7 +35,7 @@ export class ClienteSerializer implements Serializer<ClienteRequest, ClienteResp
   }
 
   fromJsonToResponseModel(json: any): ClienteResponse {
-    throw new Error('Method not implemented.');
+    return new ClienteResponse(json.id, json.nome, json.cpf, json.ativo);
   }
 
 }

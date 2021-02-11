@@ -108,11 +108,11 @@ export abstract class CrudRegistration<T extends RequestModel, U extends Respons
   }
 
   protected addModel(form: FormGroup): Observable<U> {
-    return this.service.save(this.service.serializer.fromFormToRequestModel(this._form));
+    return this.service.save(this.service.serializer.fromFormToRequestModel(form));
   }
 
   protected updateModel(form: FormGroup): Observable<U> {
-    return this.service.update(this.service.serializer.fromFormToRequestModel(this._form), this.model.id);
+    return this.service.update(this.service.serializer.fromFormToRequestModel(form), this.model.id);
   }
 
   protected changeTitleToEdition(): void {
