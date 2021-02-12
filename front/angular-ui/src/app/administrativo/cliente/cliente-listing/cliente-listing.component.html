@@ -64,6 +64,9 @@
 
       <ng-template pTemplate="header" let-columns>
         <tr>
+          <th style="width: 80px">
+            Código
+          </th>
           <th pResizableColumn>
             Nome
           </th>
@@ -82,6 +85,10 @@
       <ng-template pTemplate="body" let-rowData let-expanded="expanded">
         <tr>
           <td>
+            <span class="ui-column-title">Código</span>
+            {{rowData.id}}
+          </td>
+          <td>
             <span class="ui-column-title">Nome</span>
             {{rowData.nome}}
           </td>
@@ -99,7 +106,7 @@
           <td class="text-center">
             <span class="ui-column-title">Ações</span>
             <a pButton class="ui-button-link btn-action btn-editar" icon="fa fa-eye" pTooltip="Detalhes"
-              tooltipPosition="top"></a>
+              tooltipPosition="top" (click)="openDialog(rowData.id)"></a>
               <a pButton class="ui-button-link btn-action btn-editar" icon="fa fa-pencil" pTooltip="Editar" tooltipPosition="top"
               [routerLink]="getEditarRouterLink(rowData.id)"></a>
               <a pButton class="ui-button-link btn-action btn-editar" icon="fa fa-trash" pTooltip="Excluir" tooltipPosition="top"

@@ -1,0 +1,37 @@
+<app-dialog-loader [visible]="loading"></app-dialog-loader>
+<div class="ui-dialog-content" *ngIf="register">
+  <dl>
+    <dt>Código</dt>
+    <dd>
+      <ul class="list-unstyled no-margin">
+        <li>{{register.id}}</li>
+      </ul>
+    </dd>
+  </dl>
+  <dl>
+    <dt>Nome</dt>
+    <dd>
+      <ul class="list-unstyled no-margin">
+        <li>{{register.nome}}</li>
+      </ul>
+    </dd>
+  </dl>
+  <dl>
+    <dt>CPF</dt>
+    <dd>
+      <ul class="list-unstyled no-margin">
+        <li>{{register.cpf | cnpjCpf}}</li>
+      </ul>
+    </dd>
+  </dl>
+  <dl>
+    <dt>Ativo?</dt>
+    <dd>
+      <ul class="list-unstyled no-margin">
+        <li>{{register.ativo | simNao }}</li>
+      </ul>
+    </dd>
+  </dl>
+</div>
+
+<ng-template #tplNoData>--</ng-template>

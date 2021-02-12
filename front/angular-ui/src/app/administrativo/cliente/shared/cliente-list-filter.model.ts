@@ -10,7 +10,7 @@ export class ClienteListFilter extends ListFilter {
     public page = 0,
     public size = 10,
     public sort: ListSortFilter[] = [
-      new ListSortFilter('nome', 'asc')
+      new ListSortFilter('id,nome', 'asc')
     ]
   ) {
     super(page, size, sort);

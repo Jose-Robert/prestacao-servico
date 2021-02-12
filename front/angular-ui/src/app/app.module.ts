@@ -14,6 +14,7 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { ToastService } from './shared/service/toast.service';
 
+
 registerLocaleData(ptBR);
 
 @NgModule({
@@ -23,7 +24,7 @@ registerLocaleData(ptBR);
     HttpClientModule,
     SharedModule,
     CoreModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   declarations: [
     AppComponent

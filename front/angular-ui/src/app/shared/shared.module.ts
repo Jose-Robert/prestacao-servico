@@ -67,8 +67,9 @@ import { ClipboardService } from './service/clipboard.service';
 import { EnumSerializer } from './service/enum.serializer';
 import { StorageService } from './service/storage.service';
 import { TitleService } from './service/title.service';
-
-
+import { SimNaoPipe } from './pipe/sim-nao.pipe';
+import { NgBrazil } from 'ng-brazil';
+import { TextMaskModule } from 'angular2-text-mask';
 
 // Modules
 const angularModules: Array<Type<any> | any[]> = [
@@ -114,7 +115,9 @@ const primeNgModules: Array<Type<any> | any[]> = [
 // Bibliotecas
 const libraryModules: Array<Type<any> | any[]> = [
   BrMaskerModule,
-  CurrencyMaskModule
+  CurrencyMaskModule,
+  NgBrazil,
+  TextMaskModule
 ];
 
 // Components, Directives and Pipes
@@ -148,7 +151,8 @@ const sharedPipes: Array<Type<any> | any[]> = [
   CnpjCpfPipe,
   BrMoneyPipe,
   OrderPipe,
-  CEPPipe
+  CEPPipe,
+  SimNaoPipe
 ];
 
 // Services
@@ -166,7 +170,7 @@ const sharedProviders: Array<Type<any> | any[]> = [
   imports: [
     angularModules,
     primeNgModules,
-    libraryModules
+    libraryModules,
   ],
   exports: [
     angularModules,

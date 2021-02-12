@@ -6,14 +6,17 @@ import { CommonModule } from '@angular/common';
 import { ClienteComponent } from './cliente.component';
 import { ClienteRegistrationComponent } from './cliente-registration/cliente-registration.component';
 import { ClienteListingComponent } from './cliente-listing/cliente-listing.component';
+import { ClienteDetailComponent } from './cliente-detail/cliente-detail.component';
 
 
 
 @NgModule({
+  entryComponents:[ClienteDetailComponent],
   declarations: [
     ClienteComponent,
     ClienteRegistrationComponent,
-    ClienteListingComponent
+    ClienteListingComponent,
+    ClienteDetailComponent
   ],
   imports: [
     CommonModule,

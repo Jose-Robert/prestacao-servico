@@ -15,6 +15,7 @@ import { Route } from '@app/shared/enum/route.enum';
 import { CnpjCpfPipe } from '@app/shared/pipe/cnpj-cpf.pipe';
 import { DialogService } from 'primeng/components/dynamicdialog/dialogservice';
 import { StringUtils } from '@app/shared/util/string-utils';
+import { ClienteDetailComponent } from '../cliente-detail/cliente-detail.component';
 
 @Component({
   selector: 'app-cliente-listing',
@@ -75,8 +76,8 @@ export class ClienteListingComponent extends CrudListing<ClienteResponse, Client
     }
   }
 
-  protected get dialogComponent(): Type<any> {
-    throw new Error('Method not implemented.');
+  get dialogComponent(): Type<any> {
+    return ClienteDetailComponent;
   }
 
   get title(): string {
