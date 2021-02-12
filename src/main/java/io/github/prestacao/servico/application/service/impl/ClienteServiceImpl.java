@@ -36,6 +36,13 @@ public class ClienteServiceImpl extends BaseServiceImpl<Cliente, ClienteReposito
 		cliente.setCpf(CpfUtil.remove(cliente.getCpf()));
 		return super.atualizar(id, cliente);
 	}
+	
+	@Override
+	public Cliente alternaAtivo(Long id) {
+		Cliente cliente = super.buscar(id);
+		cliente.setAtivo(!cliente.getAtivo());
+		return super.salvar(cliente);
+	}
 
 	private void validaObrigatoriedadeDosCampos(Cliente cliente) {
 		validaObrigatoriedadeDoCpf(cliente);

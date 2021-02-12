@@ -62,7 +62,7 @@ export abstract class CrudRegistration<T extends RequestModel, U extends Respons
         this._form = this.service.serializer.fromResponseModelToForm(model);
         this.changeTitleToEdition();
       },
-      (error: HttpErrorResponse) => this.errorRedirect(error.status)
+      (error: HttpErrorResponse) => this.errorRedirect(error.status),
     );
   }
 

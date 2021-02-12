@@ -14,6 +14,7 @@ import { ConfirmationService } from 'primeng/components/common/confirmationservi
 import { Route } from '@app/shared/enum/route.enum';
 import { CnpjCpfPipe } from '@app/shared/pipe/cnpj-cpf.pipe';
 import { DialogService } from 'primeng/components/dynamicdialog/dialogservice';
+import { StringUtils } from '@app/shared/util/string-utils';
 
 @Component({
   selector: 'app-cliente-listing',
@@ -52,7 +53,7 @@ export class ClienteListingComponent extends CrudListing<ClienteResponse, Client
   }
 
   getEditarRouterLink(id: number): string | any[] {
-    return [`${Route.ADMINISTRATIVO_CLIENTES}/${Route.GENERICO_EDITAR}`.replace(':id', String(id))];
+    return [`${Route.GENERICO_EDITAR}`.replace(':id', String(id))];
   }
 
   protected redirectToRegistration(): void {
@@ -70,7 +71,7 @@ export class ClienteListingComponent extends CrudListing<ClienteResponse, Client
 
   private updateFilter(): void {
     if (this.filter.cpf) {
-      this.filter.cpf = this.cnpjCpfPipe.transform(this.filter.cpf).trim();
+      this.filter.cpf = StringUtils.removeCaracteresEspeciais(this.cnpjCpfPipe.transform(this.filter.cpf).trim());
     }
   }
 

@@ -45,27 +45,6 @@ export class ClienteRegistrationComponent extends CrudRegistration<ClienteReques
     this.router.navigate([`/${Route.ADMINISTRATIVO_CLIENTES}`]);
   }
 
-  save(): void {
-    this._formSubmitted = true;
-
-    if (this._form.invalid) {
-      return;
-    }
-
-    this._loading = true;
-
-    const saveModel = !this.isEditionMode() ? this.addModel(this._form) : this.updateModel(this._form);
-
-    saveModel.subscribe(
-      (model: ClienteResponse) => {
-        this._loading = false;
-        this.toastService.addSuccess('', `Registro ${ this.isEditionMode() ? 'atualizado' : 'adicionado' } com sucesso.`);
-      },
-      () => this._loading = false,
-      () => this.redirectToListing()
-    );
-  }
-
   get registrationTitle(): string {
     return 'Cadastro de Cliente';
   }
