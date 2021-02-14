@@ -10,7 +10,6 @@ import { BreadcrumbService } from '@app/shared/service/breadcrumb.service';
 import { TitleService } from '@app/shared/service/title.service';
 import { ToastService } from '@app/shared/service/toast.service';
 import { Route } from '@app/shared/enum/route.enum';
-import { MASKS } from 'ng-brazil';
 
 @Component({
   selector: 'app-cliente-registration',
@@ -20,8 +19,6 @@ import { MASKS } from 'ng-brazil';
 export class ClienteRegistrationComponent extends CrudRegistration<ClienteRequest, ClienteResponse, ClienteListResponse> {
 
   protected _form = new ClienteForm();
-
-  public MASKS = MASKS;
 
   constructor(
     protected activatedRoute: ActivatedRoute,

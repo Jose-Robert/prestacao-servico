@@ -9,11 +9,11 @@
 
       <p-fieldset legend="Informações Pessoais" styleClass="fieldset-informacoes-pessoais">
       <app-input-text label="Nome" [control]="form.get('nome')" inputId="nome" orientation="horizontal"
-        [required]="true" [submitted]="formSubmitted" appAutoFocus>
+        [required]="true" [submitted]="formSubmitted" appAutoFocus appUpperCase>
       </app-input-text>
-      <app-input-text label="CPF" [control]="form.get('cpf')" cpf [textMask]="{ mask: MASKS.cpf.textMask }"
+      <app-input-text label="CPF" [control]="form.get('cpf')"
         inputId="cpf" orientation="horizontal" maxlength=11 [required]="true"
-        [submitted]="formSubmitted" appAutoFocus>
+        [submitted]="formSubmitted" appAutoFocus appOnlyNumber>
       </app-input-text>
       </p-fieldset>
 

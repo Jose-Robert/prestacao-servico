@@ -70,6 +70,8 @@ import { TitleService } from './service/title.service';
 import { SimNaoPipe } from './pipe/sim-nao.pipe';
 import { NgBrazil } from 'ng-brazil';
 import { TextMaskModule } from 'angular2-text-mask';
+import { OnlyNumberDirective } from './directive/only-number.directive';
+import { UpperCaseDirective } from './directive/upper-case.directive';
 
 // Modules
 const angularModules: Array<Type<any> | any[]> = [
@@ -141,7 +143,9 @@ const sharedComponents: Array<Type<any> | any[]> = [
 const sharedDirectives: Array<Type<any> | any[]> = [
   AutoFocusDirective,
   BlockCopyPasteDirective,
-  TagDirective
+  TagDirective,
+  OnlyNumberDirective,
+  UpperCaseDirective
 ];
 const sharedPipes: Array<Type<any> | any[]> = [
   BytePipe,
