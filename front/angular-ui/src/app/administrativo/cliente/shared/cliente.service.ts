@@ -12,5 +12,5 @@ export class ClienteService extends CrudService<ClienteRequest, ClienteResponse,
 
   constructor(protected httpClient: HttpClient) {
     super(httpClient, environment.apiAuthUrl, '/clientes', new ClienteSerializer());
-   }
+  }
 }

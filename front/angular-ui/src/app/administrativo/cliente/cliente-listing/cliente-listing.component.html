@@ -9,8 +9,8 @@
         <div class="ui-g">
 
           <div class="ui-sm-12 ui-md-4 ui-lg-3 form-group-funcionario">
-            <label for="funcionario" class="control-label">Nome</label>
-            <input pInputText type="text" id="funcionario" class="form-control" name="funcionario"
+            <label for="nome" class="control-label">Nome</label>
+            <input pInputText type="text" id="nome" class="form-control" name="nome"
               [(ngModel)]="filter.nome" appAutoFocus>
           </div>
 
@@ -25,17 +25,17 @@
             <p-dropdown styleClass="form-control" inputId="status" name="status" [(ngModel)]="filter.ativo" [options]="statusFilterOptions" [filter]="true"></p-dropdown>
           </div>
 
+          <div class="ui-sm-12 ui-md-4 ui-lg-3 form-group-registros">
+            <label for="size" class="control-label">Qtd. de Registros</label>
+            <p-dropdown styleClass="form-control" inputId="size" name="size" [(ngModel)]="filter.size"
+              [options]="sizeFilterOptions" [filter]="true"></p-dropdown>
+          </div>
+
           <div class="ui-sm-12 ui-md-4 ui-lg-4 form-group-data-cadastro">
             <label for="data-cadastro" class="control-label">Data de Cadastro</label>
             <p-calendar selectionMode="range" readonlyInput="true" styleClass="form-control" inputId="data-cadastro"
               dateFormat="dd/mm/yy" name="data-cadastro" [monthNavigator]="true" [yearNavigator]="true"
               [yearRange]="intervaloAno" [(ngModel)]="filter.dataCadastro"></p-calendar>
-          </div>
-
-          <div class="ui-sm-12 ui-md-4 ui-lg-3 form-group-registros">
-            <label for="size" class="control-label">Qtd. de Registros</label>
-            <p-dropdown styleClass="form-control" inputId="size" name="size" [(ngModel)]="filter.size"
-              [options]="sizeFilterOptions" [filter]="true"></p-dropdown>
           </div>
         </div>
 
@@ -102,7 +102,7 @@
             <span class="ui-column-title">Nome</span>
             {{rowData.nome}}
           </td>
-          <td>
+          <td class="text-center">
             <span class="ui-column-title">CPF</span>
             {{rowData.cpf | cnpjCpf}}
           </td>
