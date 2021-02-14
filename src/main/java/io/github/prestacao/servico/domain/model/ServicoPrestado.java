@@ -1,6 +1,7 @@
 package io.github.prestacao.servico.domain.model;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,7 +26,7 @@ import lombok.Setter;
 @Builder
 @Entity
 @Table(name = "SERVICO")
-public class Servico extends BaseEntity {
+public class ServicoPrestado extends BaseEntity {
 
 	private static final long serialVersionUID = 3099837871382557957L;
 
@@ -42,6 +43,9 @@ public class Servico extends BaseEntity {
 	
 	@Column(name = "VALOR")
 	private BigDecimal valor;
+	
+	@Column(name = "DTSERVICO")
+	private LocalDate dataServicoPrestado;
 
 	@Override
 	public int hashCode() {
@@ -59,7 +63,7 @@ public class Servico extends BaseEntity {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Servico other = (Servico) obj;
+		ServicoPrestado other = (ServicoPrestado) obj;
 		if (super.getId() == null) {
 			if (other.id != null)
 				return false;

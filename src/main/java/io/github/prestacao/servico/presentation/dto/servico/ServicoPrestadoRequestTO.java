@@ -2,12 +2,13 @@ package io.github.prestacao.servico.presentation.dto.servico;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import io.github.prestacao.servico.presentation.dto.cliente.ClienteRequestTO;
 import lombok.Data;
 
 @Data
-public class ServicoRequestTO implements Serializable {
+public class ServicoPrestadoRequestTO implements Serializable {
 	
 	private static final long serialVersionUID = -5290649465754999681L;
 	
@@ -18,4 +19,6 @@ public class ServicoRequestTO implements Serializable {
 	private ClienteRequestTO cliente;
 	
 	private BigDecimal valor;
+	
+	private LocalDate dataServicoPrestado;
 }

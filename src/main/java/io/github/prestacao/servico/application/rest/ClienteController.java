@@ -35,18 +35,18 @@ public class ClienteController {
 
 	@Autowired
 	private ClienteService clienteService;
-	
+
 	@Autowired
 	private ClienteServiceImpl service;
-	
+
 	@Autowired
 	private ResponseServiceImpl responseService;
-	
+
 	@Autowired
 	private ConverterService converterService;
-	
+
 	@Autowired
-    private SpecificationFactory<Cliente> specificationFactory;
+	private SpecificationFactory<Cliente> specificationFactory;
 	
 	@GetMapping
 	public ResponseEntity<ResponseTO<Page<ClienteReducedResponseTO>>> listar(ClienteFilterRequestTO filterRequestTO,

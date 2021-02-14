@@ -2,9 +2,9 @@ package io.github.prestacao.servico.infrastructure.persistence.hibernate.reposit
 
 import org.springframework.stereotype.Repository;
 
-import io.github.prestacao.servico.domain.model.Servico;
+import io.github.prestacao.servico.domain.model.ServicoPrestado;
 
 @Repository
-public interface ServicoRepository extends BaseRepository<Servico> {
+public interface ServicoPrestadoRepository extends BaseRepository<ServicoPrestado> {
 
 }
