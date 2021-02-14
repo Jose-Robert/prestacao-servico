@@ -6,6 +6,7 @@ export class ClienteResponse implements ResponseModel {
     public id: number,
     public nome: string,
     public cpf: string,
+    public dataCadastro: Date,
     public ativo: boolean
   ) { }
 }

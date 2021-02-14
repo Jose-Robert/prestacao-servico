@@ -4,13 +4,19 @@ import { ClienteListResponse } from './cliente-list-response.model';
 import { Serializer } from '@app/shared/interface/serializer';
 import { Injectable } from '@angular/core';
 import { ClienteForm } from './cliente.form';
+import { DateUtils } from '@app/shared/util/date-utils';
 
 
 @Injectable()
 export class ClienteSerializer implements Serializer<ClienteRequest, ClienteResponse, ClienteListResponse> {
 
   fromJsonToResponseListModel(json: any): ClienteListResponse {
-    return new ClienteListResponse(json.id, json.nome, json.cpf, json.ativo);
+    return new ClienteListResponse(
+      json.id,
+      json.nome,
+      json.cpf,
+      json.dataCadastro,
+      json.ativo);
   }
 
   fromResponseModelToForm(model: ClienteResponse): ClienteForm {
@@ -35,7 +41,13 @@ export class ClienteSerializer implements Serializer<ClienteRequest, ClienteResp
   }
 
   fromJsonToResponseModel(json: any): ClienteResponse {
-    return new ClienteResponse(json.id, json.nome, json.cpf, json.ativo);
+
+    return new ClienteResponse(
+      json.id,
+      json.nome,
+      json.cpf,
+      json.dataCadastro,
+      json.ativo);
   }
 
 }

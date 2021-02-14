@@ -6,6 +6,7 @@ export class ClienteListFilter extends ListFilter {
     public id = null,
     public nome = '',
     public cpf = '',
+    public dataCadastro = null,
     public ativo = true,
     public page = 0,
     public size = 10,

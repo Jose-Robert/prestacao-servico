@@ -1,6 +1,7 @@
 package io.github.prestacao.servico.presentation.dto.cliente;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -16,6 +17,8 @@ public class ClienteReducedResponseTO implements Serializable {
     private String nome;
     
     private String cpf;
+    
+    private LocalDateTime dataCriacao;
     
     private boolean ativo;
     

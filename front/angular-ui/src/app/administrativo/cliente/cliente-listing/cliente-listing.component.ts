@@ -28,6 +28,7 @@ export class ClienteListingComponent extends CrudListing<ClienteResponse, Client
 
   private cnpjCpfPipe = new CnpjCpfPipe();
   filter = new ClienteListFilter();
+  intervaloAno: string;
 
   constructor(
     protected changeDetectorRef: ChangeDetectorRef,
@@ -63,6 +64,7 @@ export class ClienteListingComponent extends CrudListing<ClienteResponse, Client
 
   protected initBreadcrumb(): void {
     this.breadcrumbService.clearAndAdd('Clientes', [`/${Route.ADMINISTRATIVO_CLIENTES}`]);
+    this.gerarIntervaloDoAno();
   }
 
   async list(page = 0) {
@@ -74,6 +76,13 @@ export class ClienteListingComponent extends CrudListing<ClienteResponse, Client
     if (this.filter.cpf) {
       this.filter.cpf = StringUtils.removeCaracteresEspeciais(this.cnpjCpfPipe.transform(this.filter.cpf).trim());
     }
+  }
+
+  public gerarIntervaloDoAno(): void {
+    const dataAtual = new Date();
+    const minAno = dataAtual.getFullYear() - 100;
+    const maxAno = dataAtual.getFullYear() + 100;
+    this.intervaloAno = `${minAno} : ${maxAno}`;
   }
 
   get dialogComponent(): Type<any> {

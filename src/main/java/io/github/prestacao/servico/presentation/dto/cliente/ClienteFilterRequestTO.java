@@ -1,6 +1,7 @@
 package io.github.prestacao.servico.presentation.dto.cliente;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import io.github.prestacao.servico.domain.model.Cliente;
 import io.github.prestacao.servico.infrastructure.annotation.specification.SpecificationEntity;
@@ -24,6 +25,9 @@ public class ClienteFilterRequestTO implements Serializable {
 
 	@SpecificationField(property = "cpf", operation = SpecificationOperation.LIKE_IGNORE_CASE)
 	private String cpf;
+	
+	@SpecificationField(property = "dataCriacao")
+	private LocalDateTime dataCriacao;
 
 	@SpecificationField(property = "ativo")
 	private boolean ativo;
