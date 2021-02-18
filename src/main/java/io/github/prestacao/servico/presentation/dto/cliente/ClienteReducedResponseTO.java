@@ -21,12 +21,5 @@ public class ClienteReducedResponseTO implements Serializable {
     private LocalDateTime dataCriacao;
     
     private boolean ativo;
-    
-    
-    @Override
-    public String toString() {
-        return String.format("ClienteReducedResponseTO [id=%s, nome=%s, cpf=%s, ativo=%s]",
-        		id, nome, cpf, ativo);
-    }
 
 }

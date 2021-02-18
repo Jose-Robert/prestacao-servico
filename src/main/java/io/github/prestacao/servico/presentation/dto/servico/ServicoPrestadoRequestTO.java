@@ -4,7 +4,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import io.github.prestacao.servico.presentation.dto.cliente.ClienteRequestTO;
+import io.github.prestacao.servico.domain.model.Cliente;
+import io.github.prestacao.servico.infrastructure.annotation.converter.IdReference;
 import lombok.Data;
 
 @Data
@@ -16,9 +17,12 @@ public class ServicoPrestadoRequestTO implements Serializable {
 	
 	private String descricao;
 	
-	private ClienteRequestTO cliente;
+	@IdReference(target = Cliente.class, property = "cliente")
+	private Long cliente;
 	
 	private BigDecimal valor;
 	
 	private LocalDate dataServicoPrestado;
+	
+	private boolean ativo;
 }

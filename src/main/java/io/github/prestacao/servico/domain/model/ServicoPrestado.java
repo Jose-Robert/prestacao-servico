@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import io.github.prestacao.servico.domain.shared.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -45,7 +47,9 @@ public class ServicoPrestado extends BaseEntity {
 	private BigDecimal valor;
 	
 	@Column(name = "DTSERVICO")
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)	
 	private LocalDate dataServicoPrestado;
+	
 
 	@Override
 	public int hashCode() {
