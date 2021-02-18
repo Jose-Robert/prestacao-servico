@@ -65,6 +65,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
       this.addMenu(this.expandedMenu('Cliente', 'submenu-cliente', this.isExpandedMenu(`/${Route.ADMINISTRATIVO_CLIENTES}`)), 1)
         this.addMenu(this.listingMenu([`/${Route.ADMINISTRATIVO_CLIENTES}`]), 2)
         this.addMenu(this.registrationMenu([`/${Route.ADMINISTRATIVO_CLIENTES}/${Route.GENERICO_CADASTRAR}`]), 2)
+      this.addMenu(this.expandedMenu('Serviço', 'submenu-servico', this.isExpandedMenu(`/${Route.ADMINISTRATIVO_SERVICOS_PRESTADOS}`)), 1)
+        this.addMenu(this.listingMenu([`/${Route.ADMINISTRATIVO_SERVICOS_PRESTADOS}`]), 2)
+        this.addMenu(this.registrationMenu([`/${Route.ADMINISTRATIVO_SERVICOS_PRESTADOS}/${Route.GENERICO_CADASTRAR}`]), 2)
     return this.menuBuilder;
   }
 

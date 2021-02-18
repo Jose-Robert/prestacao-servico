@@ -9,7 +9,9 @@ export enum Route {
 
   ADMINISTRATIVO = 'administrativo',
   CLIENTES = 'clientes',
+  SERVICOS_PRESTADOS = 'servicos-prestados',
   ADMINISTRATIVO_CLIENTES = 'administrativo/clientes',
+  ADMINISTRATIVO_SERVICOS_PRESTADOS = 'administrativo/servicos-prestados',
 
 
 }
