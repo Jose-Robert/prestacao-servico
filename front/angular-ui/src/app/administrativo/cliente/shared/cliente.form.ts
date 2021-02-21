@@ -1,4 +1,3 @@
-import { ValidatorCpfCpnj } from './../../../shared/validators/ValidatorCpfCpnj';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 export class ClienteForm extends FormGroup {
@@ -12,7 +11,7 @@ export class ClienteForm extends FormGroup {
       ]),
       cpf: new FormControl('', [
         Validators.required,
-        ValidatorCpfCpnj.ValidaCpf,
+        Validators.maxLength(14),
       ]),
       ativo: new FormControl(true, Validators.required)
     });

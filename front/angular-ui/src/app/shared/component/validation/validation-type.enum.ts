@@ -1,5 +1,6 @@
 export enum ValidationType {
   EMAIL = 'email',
+  CPF = 'cpf',
   MAX = 'max',
   MAX_LENGTH = 'maxlength',
   MIN = 'min',

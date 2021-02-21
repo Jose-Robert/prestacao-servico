@@ -46,6 +46,7 @@ export class ValidationComponent {
     messages.set(ValidationType.PATTERN, 'Formato inválido');
     messages.set(ValidationType.VALIDATE_PATTERN, 'Formato inválido');
     messages.set(ValidationType.EMAIL, 'E-mail inválido');
+    messages.set(ValidationType.CPF, 'CPF inválido');
 
     return messages.has(error) ? messages.get(error) : 'Erro de validação';
   }

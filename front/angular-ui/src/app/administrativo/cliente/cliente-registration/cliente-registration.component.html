@@ -11,14 +11,21 @@
       <app-input-text label="Nome" [control]="form.get('nome')" inputId="nome" orientation="horizontal"
         [required]="true" [submitted]="formSubmitted" appAutoFocus appUpperCase>
       </app-input-text>
-      <app-input-text label="CPF" [control]="form.get('cpf')"
-        inputId="cpf" orientation="horizontal" maxlength=11 [required]="true"
+      <app-input-text label="CPF" [control]="form.get('cpf')" [brmasker]="{form: form.get('cpf'), mask:'999.999.999-99'}"
+        inputId="cpf" orientation="horizontal" [maxlength]=14 [required]="true"
         [submitted]="formSubmitted" appAutoFocus appOnlyNumber>
       </app-input-text>
       </p-fieldset>
 
       <app-input-switch label="Status" [control]="form.get('ativo')" inputId="ativo" orientation="horizontal"
         on="Ativo" off="Inativo"></app-input-switch>
+
+      <div class="ui-g">
+        <div class="ui-g-12 form-group-validacoes">
+          <app-validation [control]="form" [submitted]="formSubmitted" mode="submitted"
+            [messages]="validationMessages"></app-validation>
+        </div>
+      </div>
 
       <div class="ui-g form-group-botoes">
         <div class="ui-sm-12 ui-md-10 ui-md-offset-2">

@@ -10,6 +10,8 @@ import { BreadcrumbService } from '@app/shared/service/breadcrumb.service';
 import { TitleService } from '@app/shared/service/title.service';
 import { ToastService } from '@app/shared/service/toast.service';
 import { Route } from '@app/shared/enum/route.enum';
+import { Validation } from '@app/shared/component/validation/validation.model';
+import { ValidationType } from '@app/shared/component/validation/validation-type.enum';
 
 @Component({
   selector: 'app-cliente-registration',
@@ -51,5 +53,11 @@ export class ClienteRegistrationComponent extends CrudRegistration<ClienteReques
 
   get editionTitle(): string {
     return 'Edição de Cliente';
+  }
+
+  get validationMessages(): Validation[] {
+    return [
+      { type: 'cpf', message: 'CPF inválido' }
+    ];
   }
 }
