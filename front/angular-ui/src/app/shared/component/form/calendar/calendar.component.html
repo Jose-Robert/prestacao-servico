@@ -11,17 +11,17 @@
 
 <ng-template #tplHorizontal>
   <div class="ui-g form-group-{{inputId}}">
-    <label [for]="inputId" [ngClass]="{ 'ui-sm-12 ui-md-2 control-label': true, 'required': required }">{{label}}</label>
-    <div class="ui-sm-12 ui-md-2">
+    <label [for]="inputId"
+      [ngClass]="{ 'ui-sm-12 ui-md-2 control-label': true, 'required': required }">{{label}}</label>
+    <div class="ui-sm-12 ui-md-6">
       <ng-container *ngTemplateOutlet="tplInput"></ng-container>
     </div>
   </div>
 </ng-template>
 
 <ng-template #tplInput>
-  <input pInputText [id]="inputId" [name]="name || inputId" class="form-control"
-  currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
-  [formControl]="control" [appAutoFocus]="autoFocus" [appBlockCopyPaste]="blockCopyPaste" [pKeyFilter]="keyFilter"
-    (blur)="blured.emit($event)" (change)="changed.emit($event)" (click)="clicked.emit($event)" (focus)="focused.emit($event)">
+  <p-calendar [inputId]="inputId" [name]="name || inputId" [showIcon]="true" [readonlyInput]="true"
+  [formControl]="control" dateFormat="dd/mm/yy"></p-calendar>
   <app-validation *ngIf="validation" [control]="control" [submitted]="submitted"></app-validation>
 </ng-template>
+

@@ -5,6 +5,7 @@ import { Serializer } from '@app/shared/interface/serializer';
 import { Injectable } from '@angular/core';
 import { ClienteForm } from './cliente.form';
 import { DateUtils } from '@app/shared/util/date-utils';
+import { ClienteOptionResponse } from './cliente-option-response.model';
 
 
 @Injectable()
@@ -48,6 +49,10 @@ export class ClienteSerializer implements Serializer<ClienteRequest, ClienteResp
       json.cpf,
       json.dataCadastro,
       json.ativo);
+  }
+
+  fromJsonToResponseOptionModel(json: any): ClienteOptionResponse[] {
+    return (json as any[]).map(item => new ClienteOptionResponse(item.id, item.nome, item.cpf));
   }
 
 }

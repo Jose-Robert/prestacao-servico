@@ -1,16 +1,15 @@
 package io.github.prestacao.servico.application.service.impl;
 
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.ParseException;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 import io.github.prestacao.servico.application.service.exception.CampoObrigatorioException;
+import io.github.prestacao.servico.domain.model.Cliente;
 import io.github.prestacao.servico.domain.model.ServicoPrestado;
+import io.github.prestacao.servico.domain.service.ClienteService;
 import io.github.prestacao.servico.domain.service.ServicoPrestadoService;
 import io.github.prestacao.servico.infrastructure.persistence.hibernate.repository.ServicoPrestadoRepository;
-import io.github.prestacao.servico.infrastructure.util.ConverterUtil;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -18,10 +17,11 @@ import lombok.RequiredArgsConstructor;
 public class ServicoPrestadoServiceImpl extends BaseServiceImpl<ServicoPrestado, ServicoPrestadoRepository> 
 	implements ServicoPrestadoService {
 	
+	private final ClienteService clienteService;
+	
 	@Override
 	public ServicoPrestado salvar(ServicoPrestado servicoPrestado) {
 		this.validaCamposObrigatorios(servicoPrestado);
-		formatarValor(servicoPrestado);
 		return super.salvar(servicoPrestado);
 	}
 	
@@ -41,20 +41,12 @@ public class ServicoPrestadoServiceImpl extends BaseServiceImpl<ServicoPrestado,
 			throw new CampoObrigatorioException("Valor");
 		}
 
-		if (servicoPrestado.getDataServicoPrestado() == null) {
+		if (servicoPrestado.getDataServico() == null) {
 			throw new CampoObrigatorioException("Data do Serviço");
 		}
 	}
 	
-	private void formatarValor(ServicoPrestado servicoPrestado) {
-		DecimalFormat decimalFormat = new DecimalFormat();
-		decimalFormat.setParseBigDecimal(true);
-		String valor = ConverterUtil.formatarMoeda(servicoPrestado.getValor());
-		try {
-			servicoPrestado.setValor((BigDecimal) decimalFormat.parse(valor));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+	public List<Cliente> listarClientes() {
+		return clienteService.listar();
 	}
-
 }

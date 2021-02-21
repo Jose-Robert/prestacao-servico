@@ -3,6 +3,7 @@ import { ServicoPrestadoRegistrationComponent } from './servico-prestado-registr
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Route } from '@app/shared/enum/route.enum';
+import { ServicoPrestadoListingComponent } from './servico-prestado-listing/servico-prestado-listing.component';
 
 const routes: Routes = [
   {
@@ -10,7 +11,15 @@ const routes: Routes = [
     component: ServicoPrestadoComponent,
     children: [
       {
+        path: '',
+        component: ServicoPrestadoListingComponent,
+      },
+      {
         path: Route.GENERICO_CADASTRAR,
+        component: ServicoPrestadoRegistrationComponent,
+      },
+      {
+        path: Route.GENERICO_EDITAR,
         component: ServicoPrestadoRegistrationComponent,
       },
     ]

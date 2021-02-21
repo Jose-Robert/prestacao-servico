@@ -4,12 +4,15 @@ import { ServicoPrestadoResponse } from './servico-prestado-response';
 import { ServicoPrestadoRequest } from './servico-prestado-request';
 import { Serializer } from '@app/shared/interface/serializer';
 import { Injectable } from '@angular/core';
+import { MomentFormatPipe } from '@app/shared/pipe/moment-format.pipe';
 
 
 
 @Injectable()
 export class ServicoPrestadoSerializer implements Serializer<ServicoPrestadoRequest, ServicoPrestadoResponse,
    ServicoPrestadoListResponse> {
+
+    private momentFormat = new MomentFormatPipe();
 
   fromJsonToResponseListModel(json: any): ServicoPrestadoListResponse {
     return new ServicoPrestadoListResponse(
@@ -37,11 +40,13 @@ export class ServicoPrestadoSerializer implements Serializer<ServicoPrestadoRequ
   }
 
   fromFormToRequestModel(form: ServicoPrestadoForm): ServicoPrestadoRequest {
+
+    const dataServico = this.momentFormat.transform(form.get('dataServico').value, 'YYYY-MM-DD');
     return new ServicoPrestadoRequest(
       form.get('descricao').value,
       form.get('cliente').value,
       form.get('valor').value,
-      form.get('dataServico').value,
+      dataServico,
       form.get('ativo').value
     );
   }

@@ -1,5 +1,7 @@
 package io.github.prestacao.servico.application.rest;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,12 +19,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.github.prestacao.servico.application.service.impl.ServicoPrestadoServiceImpl;
+import io.github.prestacao.servico.domain.model.Cliente;
 import io.github.prestacao.servico.domain.model.ServicoPrestado;
 import io.github.prestacao.servico.domain.service.ServicoPrestadoService;
 import io.github.prestacao.servico.infrastructure.persistence.hibernate.specification.SpecificationFactory;
 import io.github.prestacao.servico.infrastructure.service.ConverterService;
 import io.github.prestacao.servico.infrastructure.service.ResponseServiceImpl;
 import io.github.prestacao.servico.presentation.ResponseTO;
+import io.github.prestacao.servico.presentation.dto.cliente.ClienteResponseTO;
 import io.github.prestacao.servico.presentation.dto.servico.ServicoPrestadoFilterResquestTO;
 import io.github.prestacao.servico.presentation.dto.servico.ServicoPrestadoReducedResponseTO;
 import io.github.prestacao.servico.presentation.dto.servico.ServicoPrestadoRequestTO;
@@ -34,7 +39,10 @@ import io.github.prestacao.servico.presentation.dto.servico.ServicoPrestadoRespo
 public class ServicoPrestadoController {
 	
 	@Autowired
-	private ServicoPrestadoService servico;
+	private ServicoPrestadoService servicoPrestadoService;
+	
+	@Autowired
+	private ServicoPrestadoServiceImpl servico;
 	
 	@Autowired
 	private ResponseServiceImpl responseService;
@@ -48,14 +56,14 @@ public class ServicoPrestadoController {
 	@PostMapping
 	public ResponseEntity<ResponseTO<ServicoPrestadoResponseTO>> salvar(@RequestBody ServicoPrestadoRequestTO requestTO) {
 		ServicoPrestado servicoPrestado = converterService.convert(requestTO, ServicoPrestado.class);
-		servicoPrestado = servico.salvar(servicoPrestado);
+		servicoPrestado = servicoPrestadoService.salvar(servicoPrestado);
 		ServicoPrestadoResponseTO responseTO = converterService.convert(servicoPrestado, ServicoPrestadoResponseTO.class);
 		return responseService.created(responseTO);
 	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<ResponseTO<ServicoPrestadoResponseTO>> buscar(@PathVariable Long id) {
-		ServicoPrestado servicoPrestado = servico.buscar(id);
+		ServicoPrestado servicoPrestado = servicoPrestadoService.buscar(id);
 		ServicoPrestadoResponseTO responseTO = converterService.convert(servicoPrestado, ServicoPrestadoResponseTO.class);
 		return responseService.ok(responseTO);
 	}
@@ -63,7 +71,7 @@ public class ServicoPrestadoController {
 	@PutMapping("/{id}")
 	public ResponseEntity<ResponseTO<ServicoPrestadoResponseTO>> atualizar(@PathVariable Long id, @RequestBody ServicoPrestadoRequestTO requestTO) {
 		ServicoPrestado servicoPrestado = converterService.convert(requestTO, ServicoPrestado.class);
-		ServicoPrestado servicoPrestadoSaved = servico.atualizar(id, servicoPrestado);
+		ServicoPrestado servicoPrestadoSaved = servicoPrestadoService.atualizar(id, servicoPrestado);
 		ServicoPrestadoResponseTO responseTO = converterService.convert(servicoPrestadoSaved, ServicoPrestadoResponseTO.class);
 		return responseService.created(responseTO);
 	}
@@ -73,7 +81,7 @@ public class ServicoPrestadoController {
 			Pageable pageable) {
 
 		Specification<ServicoPrestado> specification = specificationFactory.create(filterRequestTO);
-        Page<ServicoPrestado> page = servico.listar(specification, pageable);
+        Page<ServicoPrestado> page = servicoPrestadoService.listar(specification, pageable);
         Page<ServicoPrestadoReducedResponseTO> responseTOPage = converterService.convert(page, ServicoPrestadoReducedResponseTO.class);
 		return responseService.ok(responseTOPage);
 	}
@@ -81,13 +89,20 @@ public class ServicoPrestadoController {
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void remover(@PathVariable Long id) {
-		servico.remover(id);
+		servicoPrestadoService.remover(id);
 	}
 	
 	@PatchMapping("/{id}/ativo")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void alternaAtivo(@PathVariable Long id) {
-		servico.alternaAtivo(id);
+		servicoPrestadoService.alternaAtivo(id);
+	}
+	
+	@GetMapping("/clientes")
+	public ResponseEntity<ResponseTO<List<ClienteResponseTO>>> listarClientes() {
+		List<Cliente> clientes = servico.listarClientes();
+		List<ClienteResponseTO> responseTO = converterService.convert(clientes, ClienteResponseTO.class);
+		return responseService.ok(responseTO);
 	}
 
 }

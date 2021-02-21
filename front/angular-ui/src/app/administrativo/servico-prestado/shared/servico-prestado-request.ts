@@ -6,7 +6,7 @@ export class ServicoPrestadoRequest implements RequestModel {
     public descricao: string,
     public cliente: number,
     public valor: number,
-    public dataServico: Date,
+    public dataServico: Date|string,
     public ativo: boolean
   ) { }
 }

@@ -1,1 +1,38 @@
-<p>servico-prestado-registration works!</p>
+<app-page-header [title]="title"></app-page-header>
+
+<div class="page-content">
+  <p-panel [showHeader]="false">
+    <app-panel-loader [visible]="loading"></app-panel-loader>
+
+    <form [formGroup]="form" (ngSubmit)="save()"
+      [ngClass]="{ 'form form-horizontal form-cadastro': true, 'submitted': formSubmitted }">
+
+      <p-fieldset legend="Informações do Serviço" styleClass="fieldset-informacoes-servico">
+        <app-dropdown label="Cliente" [control]="form.get('cliente')" inputId="cliente"
+          orientation="horizontal" [submitted]="formSubmitted" [options]="clientesOptions" [required]="true">
+        </app-dropdown>
+        <app-input-text label="Descrição" [control]="form.get('descricao')" inputId="descricao" orientation="horizontal"
+          [autoFocus]="false" [required]="true" [submitted]="formSubmitted">
+        </app-input-text>
+        <app-calendar label="Data do Serviço" [control]="form.get('dataServico')" inputId="dataServico"
+        orientation="horizontal" [required]="true" [submitted]="formSubmitted" appAutoFocus>
+        </app-calendar>
+        <app-input-money label="Valor" [control]="form.get('valor')" inputId="valor"
+        orientation="horizontal" [required]="true" [submitted]="formSubmitted" appAutoFocus>
+        </app-input-money>
+      </p-fieldset>
+
+      <app-input-switch label="Status" [control]="form.get('ativo')" inputId="ativo" orientation="horizontal"
+        on="Ativo" off="Inativo"></app-input-switch>
+
+      <div class="ui-g form-group-botoes">
+        <div class="ui-sm-12 ui-md-10 ui-md-offset-2">
+          <button pButton type="button" class="ui-button-primary" icon="fa fa-arrow-left" label="Voltar" (click)="redirectToListing()"></button>
+          <button pButton type="submit" class="ui-button-success" icon="fa fa-save" label="Salvar" [disabled]="form.invalid"></button>
+        </div>
+      </div>
+      <!--.form-group-botoes-->
+    </form>
+  </p-panel>
+</div>
+<!--/.page-content-->

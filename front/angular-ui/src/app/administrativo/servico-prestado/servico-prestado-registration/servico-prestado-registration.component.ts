@@ -10,6 +10,7 @@ import { BreadcrumbService } from '@app/shared/service/breadcrumb.service';
 import { TitleService } from '@app/shared/service/title.service';
 import { ToastService } from '@app/shared/service/toast.service';
 import { Route } from '@app/shared/enum/route.enum';
+import { SelectItem } from 'primeng/components/common/selectitem';
 
 @Component({
   selector: 'app-servico-prestado-registration',
@@ -20,6 +21,7 @@ export class ServicoPrestadoRegistrationComponent extends CrudRegistration<Servi
    ServicoPrestadoResponse, ServicoPrestadoListResponse> {
 
   protected _form = new ServicoPrestadoForm();
+  private _clientesOptions: SelectItem[];
 
   constructor(
     protected activatedRoute: ActivatedRoute,
@@ -33,10 +35,12 @@ export class ServicoPrestadoRegistrationComponent extends CrudRegistration<Servi
     super(activatedRoute, changeDetectorRef, router, service, titleService, toastService, breadcrumbService);
   }
 
-  protected async loadAdditionalData(): Promise<void> {}
+  protected async loadAdditionalData(): Promise<void> {
+    this.loadClientesOptions();
+  }
 
   protected initBreadcrumb(): void {
-    this.breadcrumbService.clearAndAdd('Serviços Prestados', [`/${Route.ADMINISTRATIVO_SERVICOS_PRESTADOS}`]);
+    this.breadcrumbService.clearAndAdd('Serviço', [`/${Route.ADMINISTRATIVO_SERVICOS_PRESTADOS}`]);
     this.isEditionMode()
       ? this.breadcrumbService.add('Edição de Serviço Prestado', [`/${Route.ADMINISTRATIVO_SERVICOS_PRESTADOS}`, this.model.id])
       : this.breadcrumbService.add('Cadastro de Serviço Prestado', [`/${Route.ADMINISTRATIVO_SERVICOS_PRESTADOS}/${Route.GENERICO_CADASTRAR}`]);
@@ -44,6 +48,20 @@ export class ServicoPrestadoRegistrationComponent extends CrudRegistration<Servi
 
   public redirectToListing(): void {
     this.router.navigate([`/${Route.ADMINISTRATIVO_SERVICOS_PRESTADOS}`]);
+  }
+
+  private async loadClientesOptions(): Promise<void> {
+    return this.service.listarClientes().toPromise().then(
+      clientes => {
+        this._clientesOptions = [];
+        clientes.forEach(cliente => {
+          this._clientesOptions.push({
+            label: cliente.nome,
+            value: cliente.id
+          });
+        });
+      }
+    );
   }
 
   get registrationTitle(): string {
@@ -54,4 +72,7 @@ export class ServicoPrestadoRegistrationComponent extends CrudRegistration<Servi
     return 'Edição de Serviço Prestado';
   }
 
+  public get clientesOptions(): SelectItem[] {
+    return this._clientesOptions;
+  }
 }

@@ -20,7 +20,7 @@
 
 <ng-template #tplInput>
   <p-dropdown *ngIf="options && options.length; else loadingOptions" [inputId]="inputId" [name]="name || inputId"
-    styleClass="form-control" placeholder="--"
+    styleClass="form-control" placeholder="Selecione"
     [formControl]="control" [options]="options" [filter]="true" [autofocus]="autoFocus"
     (onBlur)="blured.emit($event)" (onChange)="changed.emit($event)"
     (onClick)="clicked.emit($event)" (onFocus)="focused.emit($event)"></p-dropdown>

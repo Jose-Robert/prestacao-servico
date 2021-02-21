@@ -72,6 +72,7 @@ import { NgBrazil } from 'ng-brazil';
 import { TextMaskModule } from 'angular2-text-mask';
 import { OnlyNumberDirective } from './directive/only-number.directive';
 import { UpperCaseDirective } from './directive/upper-case.directive';
+import { CalendarComponent } from './component/form/calendar/calendar.component';
 
 // Modules
 const angularModules: Array<Type<any> | any[]> = [
@@ -138,7 +139,8 @@ const sharedComponents: Array<Type<any> | any[]> = [
   SpinnerComponent,
   ValidationComponent,
   ChipsComponent,
-  DialogLoaderComponent
+  DialogLoaderComponent,
+  CalendarComponent
 ];
 const sharedDirectives: Array<Type<any> | any[]> = [
   AutoFocusDirective,

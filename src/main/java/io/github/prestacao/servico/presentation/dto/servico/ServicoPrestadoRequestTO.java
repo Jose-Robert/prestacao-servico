@@ -22,7 +22,7 @@ public class ServicoPrestadoRequestTO implements Serializable {
 	
 	private BigDecimal valor;
 	
-	private LocalDate dataServicoPrestado;
+	private LocalDate dataServico;
 	
 	private boolean ativo;
 }

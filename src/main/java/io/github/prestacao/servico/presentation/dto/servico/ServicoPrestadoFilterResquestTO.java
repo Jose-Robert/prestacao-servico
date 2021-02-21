@@ -26,8 +26,8 @@ public class ServicoPrestadoFilterResquestTO implements Serializable {
 	@SpecificationField(property = "cliente.cpf", operation = SpecificationOperation.LIKE_IGNORE_CASE)
 	private String cpf;
 	
-	@SpecificationField(property = "dataServicoPrestado")
-	private LocalDate dataServicoPrestado;
+	@SpecificationField(property = "dataServico")
+	private LocalDate dataServico;
 
 	@SpecificationField(property = "ativo")
 	private boolean ativo;

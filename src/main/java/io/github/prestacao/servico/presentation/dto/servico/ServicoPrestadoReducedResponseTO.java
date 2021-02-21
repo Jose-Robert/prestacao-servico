@@ -20,11 +20,11 @@ public class ServicoPrestadoReducedResponseTO implements Serializable {
 	private String descricao;
 
 	@JsonProperty(value = "cpf")
-    protected String clienteCpf;
+    private String clienteCpf;
 	
 	private BigDecimal valor;
 	
-	private LocalDate dataServicoPrestado;
+	private LocalDate dataServico;
 	
 	private boolean ativo;
 
