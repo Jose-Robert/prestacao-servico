@@ -11,7 +11,7 @@ export class ServicoPrestadoForm extends FormGroup {
         Validators.maxLength(150)
       ]),
       cliente: new FormControl('', [Validators.required]),
-      valor: new FormControl(0, [Validators.required]),
+      valor: new FormControl('', Validators.required),
       dataServico: new FormControl('', [Validators.required]),
       ativo: new FormControl(true, Validators.required)
     });

@@ -11,8 +11,8 @@
       <app-input-text label="Nome" [control]="form.get('nome')" inputId="nome" orientation="horizontal"
         [required]="true" [submitted]="formSubmitted" appAutoFocus appUpperCase>
       </app-input-text>
-      <app-input-text label="CPF" [control]="form.get('cpf')" [brmasker]="{form: form.get('cpf'), mask:'999.999.999-99'}"
-        inputId="cpf" orientation="horizontal" [maxlength]=14 [required]="true"
+      <app-input-text label="CPF" [control]="form.get('cpf')" [brmasker]="{form: form.get('cpf'), mask: '000.000.000-00', len:14, type:'num'}"
+        inputId="cpf" orientation="horizontal" maxlength=14 [required]="true"
         [submitted]="formSubmitted" appAutoFocus appOnlyNumber>
       </app-input-text>
       </p-fieldset>
@@ -30,7 +30,7 @@
       <div class="ui-g form-group-botoes">
         <div class="ui-sm-12 ui-md-10 ui-md-offset-2">
           <button pButton type="button" class="ui-button-primary" icon="fa fa-arrow-left" label="Voltar" (click)="redirectToListing()"></button>
-          <button pButton type="submit" class="ui-button-success" icon="fa fa-save" label="Salvar" [disabled]="form.invalid"></button>
+          <button pButton type="submit" class="ui-button-success" icon="fa fa-save" label="Salvar" [disabled]="form.untouched"></button>
         </div>
       </div>
       <!--.form-group-botoes-->
