@@ -12,8 +12,8 @@
         [required]="true" [submitted]="formSubmitted" appAutoFocus appUpperCase>
       </app-input-text>
       <app-input-text label="CPF" [control]="form.get('cpf')" [brmasker]="{form: form.get('cpf'), mask: '000.000.000-00', len:14, type:'num'}"
-        inputId="cpf" orientation="horizontal" maxlength=14 [required]="true"
-        [submitted]="formSubmitted" appAutoFocus appOnlyNumber>
+        inputId="cpf" orientation="horizontal" maxlength=14 [required]="true" placeholder="000.000.000-00"
+        [submitted]="formSubmitted" appAutoFocus>
       </app-input-text>
       </p-fieldset>
 

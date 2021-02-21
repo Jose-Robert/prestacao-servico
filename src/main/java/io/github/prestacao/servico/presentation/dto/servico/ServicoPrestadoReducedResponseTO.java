@@ -4,8 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
+import io.github.prestacao.servico.presentation.dto.cliente.ClienteResponseTO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,14 +17,13 @@ public class ServicoPrestadoReducedResponseTO implements Serializable {
 	private Long id;
 
 	private String descricao;
-
-	@JsonProperty(value = "cpf")
-    private String clienteCpf;
 	
 	private BigDecimal valor;
 	
 	private LocalDate dataServico;
 	
+	private ClienteResponseTO cliente;
+
 	private boolean ativo;
 
 }

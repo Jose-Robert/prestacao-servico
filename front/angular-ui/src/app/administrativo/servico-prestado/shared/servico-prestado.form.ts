@@ -1,5 +1,5 @@
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ValidatorCpfCpnj } from '@app/shared/validators/ValidatorCpfCpnj';
+import { trimValidator } from '@app/shared/validators/trimValidator';
 
 export class ServicoPrestadoForm extends FormGroup {
 
@@ -7,12 +7,13 @@ export class ServicoPrestadoForm extends FormGroup {
     super({
       descricao: new FormControl(null, [
         Validators.required,
+        trimValidator,
         Validators.minLength(5),
         Validators.maxLength(150)
       ]),
-      cliente: new FormControl('', [Validators.required]),
       valor: new FormControl('', Validators.required),
-      dataServico: new FormControl('', [Validators.required]),
+      dataServico: new FormControl('',Validators.required),
+      cliente: new FormControl([Validators.required]),
       ativo: new FormControl(true, Validators.required)
     });
   }

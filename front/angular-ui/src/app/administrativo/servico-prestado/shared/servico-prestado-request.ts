@@ -4,9 +4,9 @@ export class ServicoPrestadoRequest implements RequestModel {
 
   constructor(
     public descricao: string,
-    public cliente: number,
     public valor: number,
-    public dataServico: Date|string,
+    public dataServico: Date,
+    public cliente: number,
     public ativo: boolean
   ) { }
 }

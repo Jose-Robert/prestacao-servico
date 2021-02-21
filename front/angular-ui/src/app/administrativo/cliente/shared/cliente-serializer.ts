@@ -51,7 +51,7 @@ export class ClienteSerializer implements Serializer<ClienteRequest, ClienteResp
   }
 
   fromJsonToResponseOptionModel(json: any): ClienteOptionResponse[] {
-    return (json as any[]).map(item => new ClienteOptionResponse(item.id, item.nome, item.cpf));
+    return (json as any[]).map(item => new ClienteOptionResponse(item.id, item.nome, item.cpf, item.ativo));
   }
 
 }

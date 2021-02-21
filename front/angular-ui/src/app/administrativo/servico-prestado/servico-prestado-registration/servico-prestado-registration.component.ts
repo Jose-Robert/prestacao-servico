@@ -60,7 +60,7 @@ export class ServicoPrestadoRegistrationComponent extends CrudRegistration<Servi
             value: cliente.id
           });
         });
-      }
+      },
     );
   }
 

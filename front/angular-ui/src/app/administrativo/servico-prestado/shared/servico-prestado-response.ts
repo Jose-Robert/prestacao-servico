@@ -6,9 +6,9 @@ export class ServicoPrestadoResponse implements ResponseModel {
   constructor(
     public id: number,
     public descricao: string,
-    public cliente: ClienteResponse,
     public valor: number,
-    public dataServico: Date,
+    public dataServico: Date | string,
+    public cliente: ClienteResponse[],
     public ativo: boolean
   ) { }
 }

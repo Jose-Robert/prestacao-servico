@@ -17,12 +17,12 @@ public class ServicoPrestadoRequestTO implements Serializable {
 	
 	private String descricao;
 	
-	@IdReference(target = Cliente.class, property = "cliente")
-	private Long cliente;
-	
 	private BigDecimal valor;
 	
 	private LocalDate dataServico;
 	
-	private boolean ativo;
+	@IdReference(target = Cliente.class, property = "cliente")
+	private Long cliente;
+	
+	private boolean ativo;	
 }

@@ -1,4 +1,5 @@
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { trimValidator } from '@app/shared/validators/trimValidator';
 import { ValidatorCpfCpnj } from '@app/shared/validators/ValidatorCpfCpnj';
 
 export class ClienteForm extends FormGroup {
@@ -7,6 +8,7 @@ export class ClienteForm extends FormGroup {
     super({
       nome: new FormControl(null, [
         Validators.required,
+        trimValidator,
         Validators.minLength(5),
         Validators.maxLength(150)
       ]),

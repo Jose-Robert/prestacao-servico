@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import io.github.prestacao.servico.presentation.dto.cliente.ClienteRequestTO;
+import io.github.prestacao.servico.presentation.dto.cliente.ClienteResponseTO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,13 +16,13 @@ public class ServicoPrestadoResponseTO implements Serializable {
 
 	private Long id;
 	
-	private String descricao;
-	
-	private ClienteRequestTO cliente;
+	private String descricao;	
 	
 	private BigDecimal valor;
 	
 	private LocalDate dataServico;
+	
+	private ClienteResponseTO cliente;
 	
 	private boolean ativo;
 

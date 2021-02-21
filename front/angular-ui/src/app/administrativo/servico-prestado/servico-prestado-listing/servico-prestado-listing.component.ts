@@ -26,6 +26,7 @@ import { ServicoPrestadoService } from '../shared/servico-prestado.service';
 export class ServicoPrestadoListingComponent extends CrudListing<ServicoPrestadoResponse, ServicoPrestadoListResponse> {
 
   filter = new ServicoPrestadoListFilter();
+  intervaloAno: string;
 
   constructor(
     protected changeDetectorRef: ChangeDetectorRef,
@@ -43,6 +44,7 @@ export class ServicoPrestadoListingComponent extends CrudListing<ServicoPrestado
    }
 
    protected async loadAdditionalData(): Promise<void> {
+     this.list();
     return Promise.resolve();
   }
 
@@ -60,6 +62,13 @@ export class ServicoPrestadoListingComponent extends CrudListing<ServicoPrestado
 
   protected initBreadcrumb(): void {
     this.breadcrumbService.clearAndAdd('Serviço', [`/${Route.ADMINISTRATIVO_SERVICOS_PRESTADOS}`]);
+  }
+
+  public gerarIntervaloDoAno(): void {
+    const dataAtual = new Date();
+    const minAno = dataAtual.getFullYear() - 100;
+    const maxAno = dataAtual.getFullYear() + 100;
+    this.intervaloAno = `${minAno} : ${maxAno}`;
   }
 
   get dialogComponent(): Type<any> {

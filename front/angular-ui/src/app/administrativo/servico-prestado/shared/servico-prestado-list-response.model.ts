@@ -6,9 +6,9 @@ export class ServicoPrestadoListResponse implements ResponseListModel {
   constructor(
     public id: number,
     public descricao: string,
-    public cliente: ClienteResponse,
     public valor: number,
     public dataServico: Date,
+    public cliente: ClienteResponse,
     public ativo: boolean
   ) { }
 }

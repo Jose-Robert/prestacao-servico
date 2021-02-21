@@ -18,6 +18,7 @@
         orientation="horizontal" [required]="true" [submitted]="formSubmitted" appAutoFocus>
         </app-calendar>
         <app-input-money label="Valor" [control]="form.get('valor')" inputId="valor"
+        [brmasker]="{form: form.get('valor'), money: true, decimalCaracter: '.', decimal: 2}"
         orientation="horizontal" [required]="true" [submitted]="formSubmitted" appAutoFocus>
         </app-input-money>
       </p-fieldset>

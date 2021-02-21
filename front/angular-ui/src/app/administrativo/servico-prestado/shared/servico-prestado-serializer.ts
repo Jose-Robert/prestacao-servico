@@ -4,23 +4,20 @@ import { ServicoPrestadoResponse } from './servico-prestado-response';
 import { ServicoPrestadoRequest } from './servico-prestado-request';
 import { Serializer } from '@app/shared/interface/serializer';
 import { Injectable } from '@angular/core';
-import { MomentFormatPipe } from '@app/shared/pipe/moment-format.pipe';
-
+import * as moment from 'moment';
 
 
 @Injectable()
 export class ServicoPrestadoSerializer implements Serializer<ServicoPrestadoRequest, ServicoPrestadoResponse,
    ServicoPrestadoListResponse> {
 
-    private momentFormat = new MomentFormatPipe();
-
   fromJsonToResponseListModel(json: any): ServicoPrestadoListResponse {
     return new ServicoPrestadoListResponse(
       json.id,
       json.descricao,
-      json.cliente,
       json.valor,
       json.dataServico,
+      json.cliente,
       json.ativo);
   }
 
@@ -30,9 +27,9 @@ export class ServicoPrestadoSerializer implements Serializer<ServicoPrestadoRequ
     form.patchValue({
       id: model.id,
       descricao: model.descricao,
-      cliente: model.cliente,
       valor: model.valor,
-      dataServico: model.dataServico,
+      dataServico: moment(model.dataServico).toDate(),
+      cliente: model.cliente,
       ativo: model.ativo
     });
 
@@ -41,12 +38,11 @@ export class ServicoPrestadoSerializer implements Serializer<ServicoPrestadoRequ
 
   fromFormToRequestModel(form: ServicoPrestadoForm): ServicoPrestadoRequest {
 
-    const dataServico = this.momentFormat.transform(form.get('dataServico').value, 'YYYY-MM-DD');
     return new ServicoPrestadoRequest(
       form.get('descricao').value,
-      form.get('cliente').value,
       form.get('valor').value,
-      dataServico,
+      form.get('dataServico').value,
+      form.get('cliente').value,
       form.get('ativo').value
     );
   }
@@ -56,9 +52,9 @@ export class ServicoPrestadoSerializer implements Serializer<ServicoPrestadoRequ
     return new ServicoPrestadoResponse(
       json.id,
       json.descricao,
-      json.cliente,
       json.valor,
       json.dataServico,
+      json.cliente,
       json.ativo);
   }
 
