@@ -1,52 +1,44 @@
-package io.github.prestacao.servico.domain.model;
+package io.github.prestacao.servico.domain.shared;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
-import io.github.prestacao.servico.domain.shared.BaseEntity;
-import io.github.prestacao.servico.domain.shared.Endereco;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
-@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "CLIENTE")
-public class Cliente extends BaseEntity {
-
-	private static final long serialVersionUID = 3812035399807781219L;
-
+@Table(name = "UF")
+public class Uf extends BaseEntity {
+	
+	private static final long serialVersionUID = 7316326422947196237L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "CDCLIENTE")
+	@Column(name = "CDUF")
 	private Long id;
-
-	@Column(nullable = false, length = 150, name = "NOME")
-	@NotEmpty
-	private String nome;
-
-	@Column(nullable = false, length = 11, name = "CPF")
-	@NotNull
-	private String cpf;
 	
-	@ManyToOne 
-	@JoinColumn(name = "IDENDERECO", referencedColumnName = "CDENDERECO")
-	private Endereco endereco;
-
+	@Column(name = "CODIGOUF")
+	private Integer codigoUf;
+	
+	@Column(name = "NOME")
+	private String nome;
+	
+	@Column(name = "SIGLA")
+	private String sigla;
+	
+	@Column(name = "REGIAO")
+	private Integer regiao;
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -63,7 +55,7 @@ public class Cliente extends BaseEntity {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cliente other = (Cliente) obj;
+		Uf other = (Uf) obj;
 		if (super.getId() == null) {
 			if (other.id != null)
 				return false;
@@ -71,4 +63,5 @@ public class Cliente extends BaseEntity {
 			return false;
 		return true;
 	}
+
 }
