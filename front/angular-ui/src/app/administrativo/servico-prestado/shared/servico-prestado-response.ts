@@ -8,7 +8,7 @@ export class ServicoPrestadoResponse implements ResponseModel {
     public descricao: string,
     public valor: number,
     public dataServico: Date | string,
-    public cliente: ClienteResponse[],
+    public cliente: ClienteResponse,
     public ativo: boolean
   ) { }
 }

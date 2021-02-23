@@ -10,6 +10,7 @@ import { TitleService } from '@app/shared/service/title.service';
 import { ToastService } from '@app/shared/service/toast.service';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 import { DialogService } from 'primeng/components/dynamicdialog/dialogservice';
+import { ServicoPrestadoDetailComponent } from '../servico-prestado-detail/servico-prestado-detail.component';
 import { ServicoPrestadoListFilter } from '../shared/servico-prestado-list-filter.model';
 import { ServicoPrestadoListResponse } from '../shared/servico-prestado-list-response.model';
 import { ServicoPrestadoResponse } from '../shared/servico-prestado-response';
@@ -72,7 +73,7 @@ export class ServicoPrestadoListingComponent extends CrudListing<ServicoPrestado
   }
 
   get dialogComponent(): Type<any> {
-    return null;
+    return ServicoPrestadoDetailComponent;
   }
 
   get title(): string {

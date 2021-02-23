@@ -54,7 +54,8 @@ export class ServicoPrestadoRegistrationComponent extends CrudRegistration<Servi
     return this.service.listarClientes().toPromise().then(
       clientes => {
         this._clientesOptions = [];
-        clientes.forEach(cliente => {
+        clientes.filter(c => c.ativo === true)
+        .forEach(cliente => {
           this._clientesOptions.push({
             label: cliente.nome,
             value: cliente.id

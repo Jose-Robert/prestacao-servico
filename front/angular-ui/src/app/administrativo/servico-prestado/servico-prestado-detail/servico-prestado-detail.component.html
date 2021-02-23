@@ -1,0 +1,46 @@
+<app-dialog-loader [visible]="loading"></app-dialog-loader>
+<div class="ui-dialog-content" *ngIf="register">
+  <dl>
+    <dt>Descrição</dt>
+    <dd>
+      <ul class="list-unstyled no-margin">
+        <li>{{register.descricao}}</li>
+      </ul>
+    </dd>
+  </dl>
+  <dl>
+    <dt>Valor</dt>
+    <dd>
+      <ul class="list-unstyled no-margin">
+        <li>{{register.valor | brMoney}}</li>
+      </ul>
+    </dd>
+  </dl>
+  <dl>
+    <dt>Data do Serviço</dt>
+    <dd>
+      <ul class="list-unstyled no-margin">
+        <li>{{register.dataServico | momentFormat: 'LL'}}</li>
+      </ul>
+    </dd>
+  </dl>
+  <dl>
+    <dt>Cliente</dt>
+    <dd>
+      <ul class="list-unstyled no-margin">
+        <li>{{register.cliente.nome }}</li>
+      </ul>
+    </dd>
+  </dl>
+  <dl>
+    <dt>Ativo?</dt>
+    <dd>
+      <ul class="list-unstyled no-margin">
+        <li>{{register.ativo | simNao }}</li>
+      </ul>
+    </dd>
+  </dl>
+</div>
+
+<ng-template #tplNoData>--</ng-template>
+

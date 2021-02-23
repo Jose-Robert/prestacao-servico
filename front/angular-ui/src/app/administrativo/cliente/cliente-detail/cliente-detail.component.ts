@@ -25,7 +25,7 @@ export class ClienteDetailComponent implements OnInit {
   public async loadRegister() {
     this._loading = true;
     this.register = await this.service.find(this.config.data.id).toPromise();
-    this.config.header = `Cliente: ${this.register.nome}`;
+    this.config.header = `Cliente Nº ${this.register.id}`;
     this._loading = false;
   }
 
