@@ -23,45 +23,45 @@ import lombok.Setter;
 @Entity
 @Table(name = "ENDERECO")
 public class Endereco extends BaseEntity {
-	
+
 	private static final long serialVersionUID = 4883930923017040021L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "CDENDERECO")
 	private Long id;
-	
+
 	@Column(name = "CEP", length = 8)
 	private String cep;
 
 	@ManyToOne
-    @JoinColumn(name = "IDTIPOLOGRADOURO", referencedColumnName = "CDTIPOLOGRADOURO")
+	@JoinColumn(name = "IDTIPOLOGRADOURO", referencedColumnName = "CDTIPOLOGRADOURO")
 	private TipoLogradouro tipoLogradouro;
-	
+
 	@Column(name = "RUA")
 	private String rua;
-	
+
 	@Column(name = "NUMERO")
 	private String numero;
-	
+
 	@Column(name = "COMPLEMENTO")
 	private String complemento;
-	
+
 	@Column(name = "BAIRRO")
 	private String bairro;
-	
+
 	@ManyToOne
-    @JoinColumn(name = "IDMUNICIPIO", referencedColumnName = "CDMUNICIPIO")
+	@JoinColumn(name = "IDMUNICIPIO", referencedColumnName = "CDMUNICIPIO")
 	private Municipio municipio;
-	
+
 	@ManyToOne
-    @JoinColumn(name = "IDUF", referencedColumnName = "CDUF")
+	@JoinColumn(name = "IDUF", referencedColumnName = "CDUF")
 	private Uf uf;
 
 	@ManyToOne
-    @JoinColumn(name = "IDPAIS", referencedColumnName = "CDPAIS")
+	@JoinColumn(name = "IDPAIS", referencedColumnName = "CDPAIS")
 	private Pais pais;
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -86,5 +86,5 @@ public class Endereco extends BaseEntity {
 			return false;
 		return true;
 	}
-	
+
 }

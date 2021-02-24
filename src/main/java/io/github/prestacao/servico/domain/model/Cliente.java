@@ -8,8 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 import io.github.prestacao.servico.domain.shared.BaseEntity;
 import io.github.prestacao.servico.domain.shared.Endereco;
@@ -35,12 +33,10 @@ public class Cliente extends BaseEntity {
 	@Column(name = "CDCLIENTE")
 	private Long id;
 
-	@Column(nullable = false, length = 150, name = "NOME")
-	@NotEmpty
+	@Column(nullable = false, name = "NOME")
 	private String nome;
 
 	@Column(nullable = false, length = 11, name = "CPF")
-	@NotNull
 	private String cpf;
 	
 	@ManyToOne 

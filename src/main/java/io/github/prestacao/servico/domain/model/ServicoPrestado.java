@@ -32,13 +32,14 @@ public class ServicoPrestado extends BaseEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "CDSERVICO")
 	private Long id;
 
 	@Column(nullable = false, length = 150, name = "DESCRICAO")
 	private String descricao;
 
 	@ManyToOne
-	@JoinColumn(name = "IDCLIENTE")
+	@JoinColumn(name = "IDCLIENTE", referencedColumnName = "CDCLIENTE")
 	private Cliente cliente;
 	
 	@Column(name = "VALOR")

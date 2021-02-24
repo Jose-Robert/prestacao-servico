@@ -1,0 +1,23 @@
+CREATE TABLE endereco (
+	cdendereco BIGINT NOT NULL AUTO_INCREMENT,
+	cep VARCHAR(8) NOT NULL,
+	idtipologradouro BIGINT DEFAULT NULL,
+	rua VARCHAR(255) NOT NULL,
+	numero VARCHAR(50),
+	complemento VARCHAR(50),
+	bairro VARCHAR(50) NOT NULL,
+	idmunicipio BIGINT DEFAULT NULL,
+	iduf BIGINT DEFAULT NULL,
+	idpais BIGINT DEFAULT NULL,
+	status bit(1),
+  	dtcriacao DATETIME,
+  	dtatualizacao DATETIME,
+  	cdusuacriacao bigint,
+  	cdusuatualizacao bigint,
+  	versao int(11) NOT NULL DEFAULT '0',
+	PRIMARY KEY (cdendereco),
+	CONSTRAINT FK_enderecoidmunicipio_municipiocdmunicipio FOREIGN KEY (idmunicipio) REFERENCES municipio (cdmunicipio),
+	CONSTRAINT FK_enderecoidpais_paiscdpais FOREIGN KEY (idpais) REFERENCES pais (cdpais),
+	CONSTRAINT FK_enderecoidtipologradouro_tipologradourocdtipologradouro FOREIGN KEY (idtipologradouro) REFERENCES tipologradouro (cdtipologradouro),
+	CONSTRAINT FK_enderecoiduf_ufcduf FOREIGN KEY (iduf) REFERENCES uf (cduf)
+);

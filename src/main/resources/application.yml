@@ -18,10 +18,13 @@ spring:
             remove-abandoned-timeout: 360
             test-on-borrow: true
             time-between-eviction-runs-millis: 60000
-        driver-class-name: org.h2.Driver
-        password: ${DB_PASSWORD:}
-        url: ${DB_URL:jdbc:h2:mem:db}
-        username: ${DB_USER:sa}
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: ${DB_URL:jdbc:mysql://localhost/servico?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC}
+        username: ${DB_USER:developer}
+        password: ${DB_PASSWORD:admin}
+    flyway:
+        locations: classpath:db/migration
+        enabled: ${FLYWAY_ENABLED:true}
         
     jackson:
         date-format: yyyy-MM-dd
