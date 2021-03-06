@@ -3,6 +3,7 @@ package io.github.prestacao.servico.presentation.dto.cliente;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import io.github.prestacao.servico.presentation.dto.shared.EnderecoResponseTO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,5 +22,7 @@ public class ClienteResponseTO implements Serializable {
 	private LocalDateTime dataCriacao;
 	
 	private boolean ativo;
+	
+	private EnderecoResponseTO endereco;
 
 }
