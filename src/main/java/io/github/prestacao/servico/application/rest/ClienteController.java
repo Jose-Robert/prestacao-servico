@@ -1,5 +1,7 @@
 package io.github.prestacao.servico.application.rest;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,6 +22,10 @@ import org.springframework.web.bind.annotation.RestController;
 import io.github.prestacao.servico.application.service.impl.ClienteServiceImpl;
 import io.github.prestacao.servico.domain.model.Cliente;
 import io.github.prestacao.servico.domain.service.ClienteService;
+import io.github.prestacao.servico.domain.shared.Municipio;
+import io.github.prestacao.servico.domain.shared.Pais;
+import io.github.prestacao.servico.domain.shared.TipoLogradouro;
+import io.github.prestacao.servico.domain.shared.Uf;
 import io.github.prestacao.servico.infrastructure.persistence.hibernate.specification.SpecificationFactory;
 import io.github.prestacao.servico.infrastructure.service.ConverterService;
 import io.github.prestacao.servico.infrastructure.service.ResponseServiceImpl;
@@ -28,6 +34,10 @@ import io.github.prestacao.servico.presentation.dto.cliente.ClienteFilterRequest
 import io.github.prestacao.servico.presentation.dto.cliente.ClienteReducedResponseTO;
 import io.github.prestacao.servico.presentation.dto.cliente.ClienteRequestTO;
 import io.github.prestacao.servico.presentation.dto.cliente.ClienteResponseTO;
+import io.github.prestacao.servico.presentation.dto.shared.MunicipioResponseTO;
+import io.github.prestacao.servico.presentation.dto.shared.PaisResponseTO;
+import io.github.prestacao.servico.presentation.dto.shared.TipoLogradouroResponseTO;
+import io.github.prestacao.servico.presentation.dto.shared.UfResponseTO;
 
 @RestController
 @RequestMapping("/clientes")
@@ -93,5 +103,40 @@ public class ClienteController {
 	public void alternaAtivo(@PathVariable Long id) {
 		clienteService.alternaAtivo(id);
 	}
+	
+	@GetMapping("/tipos-logradouros")
+	public ResponseEntity<ResponseTO<List<TipoLogradouroResponseTO>>> buscarLogradouros() {
+		List<TipoLogradouro> logradouros = service.listarTipoLogradouros();
+		List<TipoLogradouroResponseTO> responseTO = converterService.convert(logradouros, TipoLogradouroResponseTO.class);
+		return responseService.ok(responseTO);
+	}
+
+	@GetMapping("/municipios")
+	public ResponseEntity<ResponseTO<List<MunicipioResponseTO>>> buscarMunicipios() {
+		List<Municipio> municipios = service.listarMunicipios();
+		List<MunicipioResponseTO> responseTO = converterService.convert(municipios, MunicipioResponseTO.class);
+		return responseService.ok(responseTO);
+	}
+
+	@GetMapping("/ufs")
+	public ResponseEntity<ResponseTO<List<UfResponseTO>>> buscarUfs() {
+		List<Uf> ufs = service.listarUfs();
+		List<UfResponseTO> responseTO = converterService.convert(ufs, UfResponseTO.class);
+		return responseService.ok(responseTO);
+	}
+
+	@GetMapping("/paises")
+	public ResponseEntity<ResponseTO<List<PaisResponseTO>>> buscarPaises() {
+		List<Pais> paises = service.listarPaises();
+		List<PaisResponseTO> responseTO = converterService.convert(paises, PaisResponseTO.class);
+		return responseService.ok(responseTO);
+	}
+	
+	@GetMapping("/municipios/{uf}")
+    public ResponseEntity<ResponseTO<List<MunicipioResponseTO>>> buscarMunicipiosPorUf(@PathVariable String uf) {
+        List<Municipio> municipios = service.buscarMunicipiosPorUf(uf);
+        List<MunicipioResponseTO> responseTO = converterService.convert(municipios, MunicipioResponseTO.class);
+        return responseService.ok(responseTO);
+    }
 
 }
