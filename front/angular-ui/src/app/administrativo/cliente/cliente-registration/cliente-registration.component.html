@@ -17,6 +17,13 @@
       </app-input-text>
       </p-fieldset>
 
+      <p-fieldset legend="Informações de Endereço" styleClass="fieldset-informacoes-endereco">
+        <app-input-text label="CEP" [control]="form.get('endereco').get('cep')" [brmasker]="{form: form.get('cpf'), mask: '00.000-000', len:10, type:'num'}"
+          inputId="cep" orientation="horizontal" maxlength=10 [required]="true" placeholder="00.000-000"
+          [submitted]="formSubmitted" appAutoFocus>
+        </app-input-text>
+        </p-fieldset>
+
       <app-input-switch label="Status" [control]="form.get('ativo')" inputId="ativo" orientation="horizontal"
         on="Ativo" off="Inativo"></app-input-switch>
 

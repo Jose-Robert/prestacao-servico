@@ -1,5 +1,7 @@
+import { Injectable } from '@angular/core';
 import { PaisResponse } from './pais-response.model';
 
+@Injectable()
 export class PaisSerializer {
   fromJsonToResponseModel(json: any): PaisResponse {
     if (!json) {

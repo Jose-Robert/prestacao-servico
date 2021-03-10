@@ -1,3 +1,4 @@
+import { EnderecoResponse } from '@app/administrativo/shared/endereco-response.model';
 import { ResponseModel } from '@app/shared/interface/response-model';
 
 export class ClienteResponse implements ResponseModel {
@@ -7,6 +8,7 @@ export class ClienteResponse implements ResponseModel {
     public nome: string,
     public cpf: string,
     public dataCadastro: Date,
-    public ativo: boolean
+    public ativo: boolean,
+    public endereco: EnderecoResponse
   ) { }
 }

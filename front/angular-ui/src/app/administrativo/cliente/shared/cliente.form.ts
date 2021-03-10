@@ -17,7 +17,8 @@ export class ClienteForm extends FormGroup {
         Validators.maxLength(14),
         ValidatorCpfCpnj.ValidaCpf
       ]),
-      ativo: new FormControl(true, Validators.required)
+      ativo: new FormControl(true, Validators.required),
+      endereco: new FormControl(null, Validators.required),
     });
   }
 }

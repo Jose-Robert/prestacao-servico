@@ -3,16 +3,17 @@ import { PaisSerializer } from './pais.serializer';
 import { UfSerializer } from './uf.serializer';
 import { TipoLogradouroSerializer } from './tipo-logradouro.serializer';
 import { EnderecoResponse } from './endereco-response.model';
+import { Injectable } from '@angular/core';
 
-
+@Injectable()
 export class EnderecoSerializer {
 
-  fromJsonToResponseModel(json: any): EnderecoResponse {
-    const tipologradouroSerializer = new TipoLogradouroSerializer();
-    const ufSerializer = new UfSerializer();
-    const paisSerializer = new PaisSerializer();
-    const municipioSerializer = new MunicipioSerializer();
+  private tipologradouroSerializer = new TipoLogradouroSerializer();
+  private ufSerializer = new UfSerializer();
+  private paisSerializer = new PaisSerializer();
+  private municipioSerializer = new MunicipioSerializer();
 
+  fromJsonToResponseModel(json: any): EnderecoResponse {
     if (!json) {
       return null;
     }
@@ -20,15 +21,15 @@ export class EnderecoSerializer {
     return new EnderecoResponse(
       json.id,
       json.cep,
-      tipologradouroSerializer.fromJsonToResponseModel(json.tipologradouro),
+      this.tipologradouroSerializer.fromJsonToResponseModel(json.tipologradouro),
       json.rua,
       json.numero,
       json.complemento,
       json.bairro,
-      municipioSerializer.fromJsonToResponseModel(json.municipio),
-      ufSerializer.fromJsonToResponseModel(json.uf),
-      paisSerializer.fromJsonToResponseModel(json.pais)
-      );
+      this.municipioSerializer.fromJsonToResponseModel(json.municipio),
+      this.ufSerializer.fromJsonToResponseModel(json.uf),
+      this.paisSerializer.fromJsonToResponseModel(json.pais)
+    );
   }
 
   fromJsonListToResponseModel(jsonList: any[]): EnderecoResponse[] {
