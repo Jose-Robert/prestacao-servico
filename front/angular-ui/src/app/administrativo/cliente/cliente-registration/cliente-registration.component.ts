@@ -11,7 +11,8 @@ import { TitleService } from '@app/shared/service/title.service';
 import { ToastService } from '@app/shared/service/toast.service';
 import { Route } from '@app/shared/enum/route.enum';
 import { Validation } from '@app/shared/component/validation/validation.model';
-import { ValidationType } from '@app/shared/component/validation/validation-type.enum';
+import { SelectItem } from 'primeng/components/common/api';
+import { MunicipioResponse } from '@app/administrativo/shared/municipio-response.model';
 
 @Component({
   selector: 'app-cliente-registration',
@@ -21,6 +22,11 @@ import { ValidationType } from '@app/shared/component/validation/validation-type
 export class ClienteRegistrationComponent extends CrudRegistration<ClienteRequest, ClienteResponse, ClienteListResponse> {
 
   protected _form = new ClienteForm();
+  private _tipoLogradouros: SelectItem[];
+  private _municipios: SelectItem[];
+  private _ufs: SelectItem[];
+  private _paises: SelectItem[];
+  private _municipioOptions: MunicipioResponse[];
 
   constructor(
     protected activatedRoute: ActivatedRoute,
@@ -34,7 +40,12 @@ export class ClienteRegistrationComponent extends CrudRegistration<ClienteReques
     super(activatedRoute, changeDetectorRef, router, service, titleService, toastService, breadcrumbService);
   }
 
-  protected async loadAdditionalData(): Promise<void> {}
+  protected async loadAdditionalData(): Promise<void> {
+    this.loadTiposLogradouros();
+    this.loadMunicipios();
+    this.loadUfs();
+    this.loadPaises();
+  }
 
   protected initBreadcrumb(): void {
     this.breadcrumbService.clearAndAdd('Clientes', [`/${Route.ADMINISTRATIVO_CLIENTES}`]);
@@ -45,6 +56,73 @@ export class ClienteRegistrationComponent extends CrudRegistration<ClienteReques
 
   public redirectToListing(): void {
     this.router.navigate([`/${Route.ADMINISTRATIVO_CLIENTES}`]);
+  }
+
+  private async loadTiposLogradouros(): Promise<void> {
+    return this.service.listarTiposLogradouros().toPromise().then(
+      logradouros => {
+        this._tipoLogradouros = [];
+        logradouros.forEach(logradouro => {
+          this._tipoLogradouros.push({
+            label: logradouro.descricao,
+            value: logradouro.id
+          });
+        });
+      },
+    );
+  }
+
+  private async loadMunicipios(): Promise<void> {
+    return this.service.listarMunicipios().toPromise().then(
+      municipios => {
+        this._loading = true;
+        this._municipios = [];
+        municipios.forEach(municipio => {
+          this._municipios.push({
+            label: municipio.nome,
+            value: municipio.id
+          });
+        });
+        this._loading = false;
+      },
+    );
+  }
+
+  private async buscarMunicipios(){
+    const uf:string = this.form.get('endereco').value.municipio;
+    if(uf){
+      await this.service.listarMunicipiosPorUf(uf).toPromise().then(response => {
+        this._municipioOptions = response;
+      });
+    }
+  }
+
+  private async loadUfs(): Promise<void> {
+    return this.service.listarUfs().toPromise().then(
+      ufs => {
+        this._ufs = [];
+        ufs.forEach(uf => {
+          this._ufs.push({
+            label: uf.nome,
+            value: uf.id
+          });
+        });
+      },
+    )
+  }
+
+  private async loadPaises(): Promise<void> {
+    return this.service.listarPaises().toPromise().then(
+      paises => {
+        this._paises = [];
+        paises.forEach(pais => {
+          this._paises.push({
+            label: pais.nomePt,
+            value: pais.id
+          });
+        });
+      },
+    )
   }
 
   get registrationTitle(): string {
@@ -59,5 +137,25 @@ export class ClienteRegistrationComponent extends CrudRegistration<ClienteReques
     return [
       { type: 'cpf', message: 'CPF inválido' }
     ];
+  }
+
+  get logradourosOptions(): SelectItem[] {
+    return this._tipoLogradouros;
+  }
+
+  get municipiosOptions(): SelectItem[] {
+    return this._municipios;
+  }
+
+  get ufsOptions(): SelectItem[] {
+    return this._ufs;
+  }
+
+  get paisesOptions(): SelectItem[] {
+    return this._paises;
+  }
+
+  get municipioOptions(): MunicipioResponse[] {
+    return this._municipioOptions;
   }
 }

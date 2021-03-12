@@ -1,7 +1,5 @@
-import { Injectable } from '@angular/core';
 import { MunicipioResponse } from './municipio-response.model';
 
-@Injectable()
 export class MunicipioSerializer {
   fromJsonToResponseModel(json: any): MunicipioResponse {
     if (!json) {

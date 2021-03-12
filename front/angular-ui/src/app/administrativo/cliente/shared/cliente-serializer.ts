@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { EnderecoRequest } from '@app/administrativo/shared/endereco-request.model';
 import { EnderecoResponse } from '@app/administrativo/shared/endereco-response.model';
 import { MunicipioSerializer } from '@app/administrativo/shared/municipio.serializer';
 import { PaisSerializer } from '@app/administrativo/shared/pais.serializer';
@@ -48,7 +49,7 @@ export class ClienteSerializer implements Serializer<ClienteRequest, ClienteResp
       form.get('nome').value,
       form.get('cpf').value,
       form.get('ativo').value,
-      form.get('endereco').value,
+      this.fromFormEnderecoToRequestModel(form)
     );
   }
 
@@ -82,6 +83,24 @@ export class ClienteSerializer implements Serializer<ClienteRequest, ClienteResp
 
   fromJsonToResponseOptionModel(json: any): ClienteOptionResponse[] {
     return (json as any[]).map(item => new ClienteOptionResponse(item.id, item.nome, item.cpf, item.ativo));
+  }
+
+  fromFormEnderecoToRequestModel(form: ClienteForm): EnderecoRequest {
+    if (!form.get('endereco').value || !form.get('endereco').value.cep) {
+      return null;
+    }
+
+    return new EnderecoRequest(
+        form.get('endereco').value.cep.replace('-','').trim(),
+        form.get('endereco').value.tipoLogradouro,
+        form.get('endereco').value.rua.trim(),
+        form.get('endereco').value.numero.trim(),
+        form.get('endereco').value.complemento.trim(),
+        form.get('endereco').value.bairro.trim(),
+        form.get('endereco').value.municipio,
+        form.get('endereco').value.uf,
+        form.get('endereco').value.pais,
+    );
   }
 
 }

@@ -1,3 +1,4 @@
+import { EnderecoRequest } from '@app/administrativo/shared/endereco-request.model';
 import { RequestModel } from '@app/shared/interface/request-model';
 
 export class ClienteRequest implements RequestModel {
@@ -6,6 +7,6 @@ export class ClienteRequest implements RequestModel {
     public nome: string,
     public cpf: string,
     public ativo: boolean,
-    public endereco: number
+    public endereco: EnderecoRequest
   ) { }
 }

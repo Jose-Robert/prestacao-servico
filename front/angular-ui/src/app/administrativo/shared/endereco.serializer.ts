@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class EnderecoSerializer {
 
-  private tipologradouroSerializer = new TipoLogradouroSerializer();
+  private tipoLogradouroSerializer = new TipoLogradouroSerializer();
   private ufSerializer = new UfSerializer();
   private paisSerializer = new PaisSerializer();
   private municipioSerializer = new MunicipioSerializer();
@@ -21,7 +21,7 @@ export class EnderecoSerializer {
     return new EnderecoResponse(
       json.id,
       json.cep,
-      this.tipologradouroSerializer.fromJsonToResponseModel(json.tipologradouro),
+      this.tipoLogradouroSerializer.fromJsonToResponseModel(json.tipoLogradouro),
       json.rua,
       json.numero,
       json.complemento,

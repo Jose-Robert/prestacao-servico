@@ -34,7 +34,7 @@ spring:
             WRITE_DATES_AS_TIMESTAMPS: false
     jpa:
       database-platform: org.hibernate.dialect.H2Dialect
-      show-sql: ${SHOW_SQL:false}
+      show-sql: ${SHOW_SQL:true}
       properties:
         hibernate:
           temp:

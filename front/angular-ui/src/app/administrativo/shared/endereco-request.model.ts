@@ -2,7 +2,7 @@ export class EnderecoRequest {
 
   constructor(
       public cep: string,
-      public logradouro: number,
+      public tipoLogradouro: number,
       public rua: string,
       public numero: string,
       public complemento: string,

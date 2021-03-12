@@ -1,7 +1,5 @@
-import { Injectable } from '@angular/core';
 import { TipoLogradouroResponse } from './tipo-logradouro.model';
 
-@Injectable()
 export class TipoLogradouroSerializer {
   fromJsonToResponseModel(json: any): TipoLogradouroResponse {
     if (!json) {

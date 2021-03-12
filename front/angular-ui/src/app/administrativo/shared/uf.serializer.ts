@@ -1,7 +1,5 @@
-import { Injectable } from '@angular/core';
 import { UfResponse } from './uf-response.model';
 
-@Injectable()
 export class UfSerializer {
   fromJsonToResponseModel(json: any): UfResponse {
     if (!json) {

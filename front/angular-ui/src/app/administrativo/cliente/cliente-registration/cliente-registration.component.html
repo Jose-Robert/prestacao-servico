@@ -18,10 +18,34 @@
       </p-fieldset>
 
       <p-fieldset legend="Informações de Endereço" styleClass="fieldset-informacoes-endereco">
-        <app-input-text label="CEP" [control]="form.get('endereco').get('cep')" [brmasker]="{form: form.get('cpf'), mask: '00.000-000', len:10, type:'num'}"
-          inputId="cep" orientation="horizontal" maxlength=10 [required]="true" placeholder="00.000-000"
+        <app-input-text label="CEP" [control]="form.get('endereco').get('cep')" [brmasker]="{form: form.get('endereco').get('cep'), mask: '00000-000', len:9, type:'num'}"
+          inputId="cep" orientation="horizontal" maxlength=9 [required]="true" placeholder="00000-000"
           [submitted]="formSubmitted" appAutoFocus>
         </app-input-text>
+        <app-dropdown label="Tipo de Logradouro" [control]="form.get('endereco').get('tipoLogradouro')" inputId="tipoLogradouro"
+          orientation="horizontal" [submitted]="formSubmitted" [options]="logradourosOptions | orderBy: 'label':'asc'" [required]="true">
+        </app-dropdown>
+        <app-input-text label="Rua" [control]="form.get('endereco').get('rua')" inputId="rua" orientation="horizontal" maxlength=14 [required]="true"
+          [submitted]="formSubmitted" appAutoFocus>
+        </app-input-text>
+        <app-input-text label="Número" [control]="form.get('endereco').get('numero')" inputId="numero" orientation="horizontal" maxlength=20 [required]="true"
+          [submitted]="formSubmitted" appAutoFocus>
+        </app-input-text>
+        <app-input-text label="Complemento" [control]="form.get('endereco').get('complemento')" inputId="complemento" orientation="horizontal"
+          [submitted]="formSubmitted" appAutoFocus>
+        </app-input-text>
+        <app-input-text label="Bairro" [control]="form.get('endereco').get('bairro')" inputId="bairro" orientation="horizontal" [required]="true"
+          [submitted]="formSubmitted" appAutoFocus>
+        </app-input-text>
+        <app-dropdown label="UF" [control]="form.get('endereco').get('uf')" inputId="uf"
+        orientation="horizontal" [submitted]="formSubmitted" [options]="ufsOptions | orderBy: 'label':'asc'" [required]="true">
+      </app-dropdown>
+        <app-dropdown label="Município" [control]="form.get('endereco').get('municipio')" inputId="municipio"
+          orientation="horizontal" [submitted]="formSubmitted" [options]="municipiosOptions | orderBy: 'label':'asc'" [required]="true">
+        </app-dropdown>
+        <app-dropdown label="País" [control]="form.get('endereco').get('pais')" inputId="pais"
+          orientation="horizontal" [submitted]="formSubmitted" [options]="paisesOptions | orderBy: 'label':'asc'" [required]="true">
+        </app-dropdown>
         </p-fieldset>
 
       <app-input-switch label="Status" [control]="form.get('ativo')" inputId="ativo" orientation="horizontal"
