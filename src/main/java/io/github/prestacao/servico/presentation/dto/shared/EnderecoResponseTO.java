@@ -11,8 +11,6 @@ public class EnderecoResponseTO implements Serializable {
 	
 	private static final long serialVersionUID = 3618665410110254563L;
 
-	private Long id;
-
 	private String cep;
 
 	private TipoLogradouroResponseTO tipoLogradouro;

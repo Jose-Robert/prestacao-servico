@@ -19,9 +19,9 @@ spring:
             test-on-borrow: true
             time-between-eviction-runs-millis: 60000
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: ${DB_URL:jdbc:mysql://localhost/servico?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC}
-        username: ${DB_USER:developer}
-        password: ${DB_PASSWORD:admin}
+        url: ${DB_URL:jdbc:mysql://localhost:3308/fullstack?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC}
+        username: ${DB_USER:udemy}
+        password: ${DB_PASSWORD:Udemy@1234}
     flyway:
         locations: classpath:db/migration
         enabled: ${FLYWAY_ENABLED:true}

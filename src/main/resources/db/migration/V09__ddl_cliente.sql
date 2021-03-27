@@ -1,0 +1,26 @@
+CREATE TABLE cliente (
+	cdcliente BIGINT NOT NULL AUTO_INCREMENT,
+	nome VARCHAR(255) NOT NULL,
+	cpf VARCHAR(11) NOT NULL,
+	cep VARCHAR(8) NOT NULL,
+	idtipologradouro BIGINT DEFAULT NULL,
+	rua VARCHAR(255) NOT NULL,
+	numero VARCHAR(50),
+	complemento VARCHAR(50),
+	bairro VARCHAR(50) NOT NULL,
+	idmunicipio BIGINT DEFAULT NULL,
+	iduf BIGINT DEFAULT NULL,
+	idpais BIGINT DEFAULT NULL,
+	status bit(1),
+  	dtcriacao DATETIME,
+  	dtatualizacao DATETIME,
+  	cdusuacriacao bigint,
+  	cdusuatualizacao bigint,
+  	versao int(11) NOT NULL DEFAULT '0',
+	PRIMARY KEY (cdcliente),
+	CONSTRAINT FK_clienteidmunicipio_municipiocdmunicipio FOREIGN KEY (idmunicipio) REFERENCES municipio (cdmunicipio),
+	CONSTRAINT FK_clienteidpais_paiscdpais FOREIGN KEY (idpais) REFERENCES pais (cdpais),
+	CONSTRAINT FK_clienteidtipologradouro_tipologradourocdtipologradouro FOREIGN KEY (idtipologradouro) REFERENCES tipologradouro (cdtipologradouro),
+	CONSTRAINT FK_clienteiduf_ufcduf FOREIGN KEY (iduf) REFERENCES uf (cduf)
+	
+);

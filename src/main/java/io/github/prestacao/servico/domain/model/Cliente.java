@@ -1,12 +1,11 @@
 package io.github.prestacao.servico.domain.model;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import io.github.prestacao.servico.domain.shared.BaseEntity;
@@ -38,9 +37,8 @@ public class Cliente extends BaseEntity {
 
 	@Column(nullable = false, length = 11, name = "CPF")
 	private String cpf;
-	
-	@ManyToOne 
-	@JoinColumn(name = "IDENDERECO", referencedColumnName = "CDENDERECO")
+
+	@Embedded
 	private Endereco endereco;
 
 	@Override
